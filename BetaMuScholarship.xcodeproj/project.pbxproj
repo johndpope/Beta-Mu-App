@@ -1,0 +1,516 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		17FC2F801E258FC500174015 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2F7F1E258FC500174015 /* AppDelegate.swift */; };
+		17FC2F851E258FC500174015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17FC2F831E258FC500174015 /* Main.storyboard */; };
+		17FC2F871E258FC500174015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17FC2F861E258FC500174015 /* Assets.xcassets */; };
+		17FC2F951E2590D800174015 /* MFAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FC2F941E2590D800174015 /* MFAViewController.xib */; };
+		17FC2F971E25928900174015 /* MFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2F961E25928900174015 /* MFAViewController.swift */; };
+		17FC2F991E25940900174015 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2F981E25940900174015 /* SignInViewController.swift */; };
+		17FC2F9B1E259E0500174015 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2F9A1E259E0500174015 /* Constants.swift */; };
+		17FC2F9D1E259E5D00174015 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2F9C1E259E5D00174015 /* SignUpViewController.swift */; };
+		17FC2F9F1E259F3200174015 /* ConfirmSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2F9E1E259F3200174015 /* ConfirmSignUpViewController.swift */; };
+		17FC2FA11E25A25900174015 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2FA01E25A25900174015 /* ForgotPasswordViewController.swift */; };
+		17FC2FA31E25A5D000174015 /* ConfirmForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2FA21E25A5D000174015 /* ConfirmForgotPasswordViewController.swift */; };
+		17FC2FA51E25A77600174015 /* UserDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2FA41E25A77600174015 /* UserDetailTableViewController.swift */; };
+		17FC2FA71E25A9A200174015 /* DevicesDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2FA61E25A9A200174015 /* DevicesDetailTableViewController.swift */; };
+		1933281D1FF4BC9300318A17 /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1933281C1FF4BC9300318A17 /* CropViewController.swift */; };
+		19A8A2721FF4A88A00C959BB /* Announcments_Main_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2711FF4A88A00C959BB /* Announcments_Main_ViewController.swift */; };
+		19A8A2791FF4A97300C959BB /* StudyHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2731FF4A97300C959BB /* StudyHoursViewController.swift */; };
+		19A8A27A1FF4A97300C959BB /* ProboRequirementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2741FF4A97300C959BB /* ProboRequirementsViewController.swift */; };
+		19A8A27B1FF4A97300C959BB /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2751FF4A97300C959BB /* SideMenuTableViewController.swift */; };
+		19A8A27C1FF4A97300C959BB /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2761FF4A97300C959BB /* SideMenuTableViewCell.swift */; };
+		19A8A27D1FF4A97300C959BB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2771FF4A97300C959BB /* SettingsTableViewController.swift */; };
+		19A8A27E1FF4A97300C959BB /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2781FF4A97300C959BB /* SettingsTableViewCell.swift */; };
+		19A8A2801FF4AB1700C959BB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19A8A27F1FF4AB1700C959BB /* Info.plist */; };
+		19B7BA0E1FF4337F004458E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19B7BA0D1FF4337E004458E7 /* LaunchScreen.storyboard */; };
+		19B7BA121FF439CD004458E7 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19B7BA111FF439CD004458E7 /* awsconfiguration.json */; };
+		4833988C60102DA180C62707 /* Pods_BetaMuScholarship.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3522F83493D20E6124AD9F /* Pods_BetaMuScholarship.framework */; };
+		A29C11B92B7AC607FB770C4C /* Pods_CognitoYourUserPoolsSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB8A4DC9A36908CF382AB42 /* Pods_CognitoYourUserPoolsSample.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		17FC2F7C1E258FC500174015 /* BetaMuScholarship.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetaMuScholarship.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		17FC2F7F1E258FC500174015 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		17FC2F841E258FC500174015 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		17FC2F861E258FC500174015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		17FC2F941E2590D800174015 /* MFAViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MFAViewController.xib; sourceTree = "<group>"; };
+		17FC2F961E25928900174015 /* MFAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFAViewController.swift; sourceTree = "<group>"; };
+		17FC2F981E25940900174015 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		17FC2F9A1E259E0500174015 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		17FC2F9C1E259E5D00174015 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		17FC2F9E1E259F3200174015 /* ConfirmSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmSignUpViewController.swift; sourceTree = "<group>"; };
+		17FC2FA01E25A25900174015 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		17FC2FA21E25A5D000174015 /* ConfirmForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		17FC2FA41E25A77600174015 /* UserDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewController.swift; sourceTree = "<group>"; };
+		17FC2FA61E25A9A200174015 /* DevicesDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesDetailTableViewController.swift; sourceTree = "<group>"; };
+		1933281C1FF4BC9300318A17 /* CropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
+		19A8A2711FF4A88A00C959BB /* Announcments_Main_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Announcments_Main_ViewController.swift; sourceTree = "<group>"; };
+		19A8A2731FF4A97300C959BB /* StudyHoursViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyHoursViewController.swift; sourceTree = "<group>"; };
+		19A8A2741FF4A97300C959BB /* ProboRequirementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProboRequirementsViewController.swift; sourceTree = "<group>"; };
+		19A8A2751FF4A97300C959BB /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
+		19A8A2761FF4A97300C959BB /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		19A8A2771FF4A97300C959BB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		19A8A2781FF4A97300C959BB /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		19A8A27F1FF4AB1700C959BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../../Beta_Theta_Pi/Beta Theta Pi/Info.plist"; sourceTree = "<group>"; };
+		19B7BA0D1FF4337E004458E7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		19B7BA111FF439CD004458E7 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		30AB979030117F07C4D368D1 /* Pods-CognitoYourUserPoolsSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CognitoYourUserPoolsSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-CognitoYourUserPoolsSample/Pods-CognitoYourUserPoolsSample.release.xcconfig"; sourceTree = "<group>"; };
+		47F308509E85C2AD6FFE9023 /* Pods-BetaMuScholarship.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetaMuScholarship.release.xcconfig"; path = "Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship.release.xcconfig"; sourceTree = "<group>"; };
+		7BCE56A3AD0E4E396DDFBDB9 /* Pods-BetaMuScholarship.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetaMuScholarship.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship.debug.xcconfig"; sourceTree = "<group>"; };
+		7E3522F83493D20E6124AD9F /* Pods_BetaMuScholarship.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BetaMuScholarship.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDB8A4DC9A36908CF382AB42 /* Pods_CognitoYourUserPoolsSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CognitoYourUserPoolsSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D971B2DCBC68AF1FFBC7FAF0 /* Pods-CognitoYourUserPoolsSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CognitoYourUserPoolsSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CognitoYourUserPoolsSample/Pods-CognitoYourUserPoolsSample.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		17FC2F791E258FC500174015 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A29C11B92B7AC607FB770C4C /* Pods_CognitoYourUserPoolsSample.framework in Frameworks */,
+				4833988C60102DA180C62707 /* Pods_BetaMuScholarship.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		17FC2F731E258FC500174015 = {
+			isa = PBXGroup;
+			children = (
+				17FC2F7E1E258FC500174015 /* Beta Mu Scholarship */,
+				17FC2F7D1E258FC500174015 /* Products */,
+				EAFF2674E44540356AB209E7 /* Pods */,
+				734C967BB4D8F72F91532466 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		17FC2F7D1E258FC500174015 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17FC2F7C1E258FC500174015 /* BetaMuScholarship.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		17FC2F7E1E258FC500174015 /* Beta Mu Scholarship */ = {
+			isa = PBXGroup;
+			children = (
+				198D9C021FF42E3F008BFA35 /* Configs */,
+				198D9C011FF42E15008BFA35 /* Views */,
+				17FC2F7F1E258FC500174015 /* AppDelegate.swift */,
+				17FC2F831E258FC500174015 /* Main.storyboard */,
+				17FC2F861E258FC500174015 /* Assets.xcassets */,
+				19A8A27F1FF4AB1700C959BB /* Info.plist */,
+				19B7BA0D1FF4337E004458E7 /* LaunchScreen.storyboard */,
+				19B7BA111FF439CD004458E7 /* awsconfiguration.json */,
+			);
+			name = "Beta Mu Scholarship";
+			path = CognitoYourUserPoolsSample;
+			sourceTree = "<group>";
+		};
+		198D9C011FF42E15008BFA35 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1933281C1FF4BC9300318A17 /* CropViewController.swift */,
+				19A8A2711FF4A88A00C959BB /* Announcments_Main_ViewController.swift */,
+				17FC2F961E25928900174015 /* MFAViewController.swift */,
+				17FC2F941E2590D800174015 /* MFAViewController.xib */,
+				17FC2F981E25940900174015 /* SignInViewController.swift */,
+				17FC2F9C1E259E5D00174015 /* SignUpViewController.swift */,
+				17FC2F9E1E259F3200174015 /* ConfirmSignUpViewController.swift */,
+				17FC2FA01E25A25900174015 /* ForgotPasswordViewController.swift */,
+				17FC2FA21E25A5D000174015 /* ConfirmForgotPasswordViewController.swift */,
+				17FC2FA41E25A77600174015 /* UserDetailTableViewController.swift */,
+				17FC2FA61E25A9A200174015 /* DevicesDetailTableViewController.swift */,
+				19A8A2741FF4A97300C959BB /* ProboRequirementsViewController.swift */,
+				19A8A2781FF4A97300C959BB /* SettingsTableViewCell.swift */,
+				19A8A2771FF4A97300C959BB /* SettingsTableViewController.swift */,
+				19A8A2761FF4A97300C959BB /* SideMenuTableViewCell.swift */,
+				19A8A2751FF4A97300C959BB /* SideMenuTableViewController.swift */,
+				19A8A2731FF4A97300C959BB /* StudyHoursViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		198D9C021FF42E3F008BFA35 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				17FC2F9A1E259E0500174015 /* Constants.swift */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
+		734C967BB4D8F72F91532466 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BDB8A4DC9A36908CF382AB42 /* Pods_CognitoYourUserPoolsSample.framework */,
+				7E3522F83493D20E6124AD9F /* Pods_BetaMuScholarship.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EAFF2674E44540356AB209E7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D971B2DCBC68AF1FFBC7FAF0 /* Pods-CognitoYourUserPoolsSample.debug.xcconfig */,
+				30AB979030117F07C4D368D1 /* Pods-CognitoYourUserPoolsSample.release.xcconfig */,
+				7BCE56A3AD0E4E396DDFBDB9 /* Pods-BetaMuScholarship.debug.xcconfig */,
+				47F308509E85C2AD6FFE9023 /* Pods-BetaMuScholarship.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		17FC2F7B1E258FC500174015 /* BetaMuScholarship */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17FC2F8E1E258FC500174015 /* Build configuration list for PBXNativeTarget "BetaMuScholarship" */;
+			buildPhases = (
+				B1521F0981C14479C6A31FB9 /* [CP] Check Pods Manifest.lock */,
+				17FC2F781E258FC500174015 /* Sources */,
+				17FC2F791E258FC500174015 /* Frameworks */,
+				17FC2F7A1E258FC500174015 /* Resources */,
+				2D754CC083C0013AD74DB2B8 /* [CP] Embed Pods Frameworks */,
+				BEAB6F49A06EBC699946E5EF /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BetaMuScholarship;
+			productName = CognitoYourUserPoolsSample;
+			productReference = 17FC2F7C1E258FC500174015 /* BetaMuScholarship.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		17FC2F741E258FC500174015 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Dubal, Rohan";
+				TargetAttributes = {
+					17FC2F7B1E258FC500174015 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 3AT7FQ5S2Z;
+						LastSwiftMigration = 0920;
+					};
+				};
+			};
+			buildConfigurationList = 17FC2F771E258FC500174015 /* Build configuration list for PBXProject "BetaMuScholarship" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 17FC2F731E258FC500174015;
+			productRefGroup = 17FC2F7D1E258FC500174015 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				17FC2F7B1E258FC500174015 /* BetaMuScholarship */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		17FC2F7A1E258FC500174015 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19B7BA121FF439CD004458E7 /* awsconfiguration.json in Resources */,
+				17FC2F871E258FC500174015 /* Assets.xcassets in Resources */,
+				19A8A2801FF4AB1700C959BB /* Info.plist in Resources */,
+				19B7BA0E1FF4337F004458E7 /* LaunchScreen.storyboard in Resources */,
+				17FC2F851E258FC500174015 /* Main.storyboard in Resources */,
+				17FC2F951E2590D800174015 /* MFAViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D754CC083C0013AD74DB2B8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSPinpoint/AWSPinpoint.framework",
+				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSPinpoint.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWRevealViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1521F0981C14479C6A31FB9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BetaMuScholarship-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEAB6F49A06EBC699946E5EF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		17FC2F781E258FC500174015 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19A8A27C1FF4A97300C959BB /* SideMenuTableViewCell.swift in Sources */,
+				19A8A2721FF4A88A00C959BB /* Announcments_Main_ViewController.swift in Sources */,
+				17FC2FA31E25A5D000174015 /* ConfirmForgotPasswordViewController.swift in Sources */,
+				19A8A2791FF4A97300C959BB /* StudyHoursViewController.swift in Sources */,
+				17FC2FA11E25A25900174015 /* ForgotPasswordViewController.swift in Sources */,
+				17FC2F9D1E259E5D00174015 /* SignUpViewController.swift in Sources */,
+				17FC2F9F1E259F3200174015 /* ConfirmSignUpViewController.swift in Sources */,
+				17FC2F9B1E259E0500174015 /* Constants.swift in Sources */,
+				1933281D1FF4BC9300318A17 /* CropViewController.swift in Sources */,
+				17FC2F991E25940900174015 /* SignInViewController.swift in Sources */,
+				19A8A27A1FF4A97300C959BB /* ProboRequirementsViewController.swift in Sources */,
+				17FC2F971E25928900174015 /* MFAViewController.swift in Sources */,
+				19A8A27E1FF4A97300C959BB /* SettingsTableViewCell.swift in Sources */,
+				17FC2FA71E25A9A200174015 /* DevicesDetailTableViewController.swift in Sources */,
+				19A8A27D1FF4A97300C959BB /* SettingsTableViewController.swift in Sources */,
+				17FC2F801E258FC500174015 /* AppDelegate.swift in Sources */,
+				17FC2FA51E25A77600174015 /* UserDetailTableViewController.swift in Sources */,
+				19A8A27B1FF4A97300C959BB /* SideMenuTableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		17FC2F831E258FC500174015 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17FC2F841E258FC500174015 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		17FC2F8C1E258FC500174015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		17FC2F8D1E258FC500174015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		17FC2F8F1E258FC500174015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BCE56A3AD0E4E396DDFBDB9 /* Pods-BetaMuScholarship.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3AT7FQ5S2Z;
+				INFOPLIST_FILE = CognitoYourUserPoolsSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.James.Beta-Theta-Pi";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		17FC2F901E258FC500174015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47F308509E85C2AD6FFE9023 /* Pods-BetaMuScholarship.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3AT7FQ5S2Z;
+				INFOPLIST_FILE = CognitoYourUserPoolsSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.James.Beta-Theta-Pi";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17FC2F771E258FC500174015 /* Build configuration list for PBXProject "BetaMuScholarship" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17FC2F8C1E258FC500174015 /* Debug */,
+				17FC2F8D1E258FC500174015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17FC2F8E1E258FC500174015 /* Build configuration list for PBXNativeTarget "BetaMuScholarship" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17FC2F8F1E258FC500174015 /* Debug */,
+				17FC2F901E258FC500174015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 17FC2F741E258FC500174015 /* Project object */;
+}
