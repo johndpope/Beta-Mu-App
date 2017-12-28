@@ -6,6 +6,7 @@ use_frameworks!
 target 'BetaMuScholarship' do
     pod 'AWSCognitoIdentityProvider'
     pod 'AWSPinpoint'
+    pod 'AWSS3'
     pod 'IQKeyboardManagerSwift'
     pod 'SWRevealViewController'
     pod 'GoogleMaps'
@@ -14,3 +15,4 @@ target 'BetaMuScholarship' do
     pod 'TOCropViewController'
     pod 'CropViewController'
 end
+

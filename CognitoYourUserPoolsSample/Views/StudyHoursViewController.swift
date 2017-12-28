@@ -28,6 +28,8 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewDidLoad() {
+        locationManager.requestAlwaysAuthorization()
+        
         super.viewDidLoad()
         
         setupNavBarButtons()
@@ -42,12 +44,12 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
         if self.revealViewController() != nil {
             sideMenu.target = self.revealViewController()
             sideMenu.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.revealViewController().rearViewRevealWidth = self.view.frame.width * 0.7
+            self.revealViewController().rearViewRevealWidth = self.view.frame.width * 0.7 < 290 ? self.view.frame.width * 0.7 : 290
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             
             settings.target = self.revealViewController()
             settings.action = #selector(SWRevealViewController.rightRevealToggle(_:))
-            self.revealViewController().rightViewRevealWidth = self.view.frame.width * 0.7
+            self.revealViewController().rightViewRevealWidth = self.view.frame.width * 0.7 < 290 ? self.view.frame.width * 0.7 : 290
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
     }
@@ -55,8 +57,6 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func pickPlace(_ sender: Any) {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             print("yeeeet")
             locationManager.startUpdatingLocation()

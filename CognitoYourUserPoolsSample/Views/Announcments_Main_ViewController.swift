@@ -18,12 +18,15 @@ class Announcments_Main_ViewController: UIViewController {
         if self.revealViewController() != nil {
             sideMenu.target = self.revealViewController()
             sideMenu.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.revealViewController().rearViewRevealWidth = self.view.frame.width * 0.7
+            self.revealViewController().rearViewRevealWidth = self.view.frame.width * 0.7 < 290 ? self.view.frame.width * 0.7 : 290
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             
             settings.target = self.revealViewController()
             settings.action = #selector(SWRevealViewController.rightRevealToggle(_:))
-           self.revealViewController().rightViewRevealWidth = self.view.frame.width * 0.7
+           self.revealViewController().rightViewRevealWidth = self.view.frame.width * 0.7 < 290 ? self.view.frame.width * 0.7 : 290
+            
+           print(self.view.frame.width * 0.7)
+            print(self.revealViewController().rightViewRevealWidth)
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         

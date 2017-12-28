@@ -28,11 +28,10 @@
 		19A8A27C1FF4A97300C959BB /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2761FF4A97300C959BB /* SideMenuTableViewCell.swift */; };
 		19A8A27D1FF4A97300C959BB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2771FF4A97300C959BB /* SettingsTableViewController.swift */; };
 		19A8A27E1FF4A97300C959BB /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2781FF4A97300C959BB /* SettingsTableViewCell.swift */; };
-		19A8A2801FF4AB1700C959BB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19A8A27F1FF4AB1700C959BB /* Info.plist */; };
 		19B7BA0E1FF4337F004458E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19B7BA0D1FF4337E004458E7 /* LaunchScreen.storyboard */; };
-		19B7BA121FF439CD004458E7 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19B7BA111FF439CD004458E7 /* awsconfiguration.json */; };
+		19BD59081FF5977300DDDF94 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19BD59071FF5977300DDDF94 /* awsconfiguration.json */; };
+		19BD590A1FF59A0700DDDF94 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19BD59091FF59A0600DDDF94 /* Info.plist */; };
 		4833988C60102DA180C62707 /* Pods_BetaMuScholarship.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3522F83493D20E6124AD9F /* Pods_BetaMuScholarship.framework */; };
-		A29C11B92B7AC607FB770C4C /* Pods_CognitoYourUserPoolsSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB8A4DC9A36908CF382AB42 /* Pods_CognitoYourUserPoolsSample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,15 +57,13 @@
 		19A8A2761FF4A97300C959BB /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		19A8A2771FF4A97300C959BB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		19A8A2781FF4A97300C959BB /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		19A8A27F1FF4AB1700C959BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../../Beta_Theta_Pi/Beta Theta Pi/Info.plist"; sourceTree = "<group>"; };
 		19B7BA0D1FF4337E004458E7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		19B7BA111FF439CD004458E7 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
-		30AB979030117F07C4D368D1 /* Pods-CognitoYourUserPoolsSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CognitoYourUserPoolsSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-CognitoYourUserPoolsSample/Pods-CognitoYourUserPoolsSample.release.xcconfig"; sourceTree = "<group>"; };
+		19BD59071FF5977300DDDF94 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		19BD59091FF59A0600DDDF94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47F308509E85C2AD6FFE9023 /* Pods-BetaMuScholarship.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetaMuScholarship.release.xcconfig"; path = "Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship.release.xcconfig"; sourceTree = "<group>"; };
 		7BCE56A3AD0E4E396DDFBDB9 /* Pods-BetaMuScholarship.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetaMuScholarship.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship.debug.xcconfig"; sourceTree = "<group>"; };
 		7E3522F83493D20E6124AD9F /* Pods_BetaMuScholarship.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BetaMuScholarship.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB8A4DC9A36908CF382AB42 /* Pods_CognitoYourUserPoolsSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CognitoYourUserPoolsSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D971B2DCBC68AF1FFBC7FAF0 /* Pods-CognitoYourUserPoolsSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CognitoYourUserPoolsSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CognitoYourUserPoolsSample/Pods-CognitoYourUserPoolsSample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +71,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A29C11B92B7AC607FB770C4C /* Pods_CognitoYourUserPoolsSample.framework in Frameworks */,
 				4833988C60102DA180C62707 /* Pods_BetaMuScholarship.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,9 +104,9 @@
 				17FC2F7F1E258FC500174015 /* AppDelegate.swift */,
 				17FC2F831E258FC500174015 /* Main.storyboard */,
 				17FC2F861E258FC500174015 /* Assets.xcassets */,
-				19A8A27F1FF4AB1700C959BB /* Info.plist */,
+				19BD59091FF59A0600DDDF94 /* Info.plist */,
 				19B7BA0D1FF4337E004458E7 /* LaunchScreen.storyboard */,
-				19B7BA111FF439CD004458E7 /* awsconfiguration.json */,
+				19BD59071FF5977300DDDF94 /* awsconfiguration.json */,
 			);
 			name = "Beta Mu Scholarship";
 			path = CognitoYourUserPoolsSample;
@@ -160,8 +156,6 @@
 		EAFF2674E44540356AB209E7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D971B2DCBC68AF1FFBC7FAF0 /* Pods-CognitoYourUserPoolsSample.debug.xcconfig */,
-				30AB979030117F07C4D368D1 /* Pods-CognitoYourUserPoolsSample.release.xcconfig */,
 				7BCE56A3AD0E4E396DDFBDB9 /* Pods-BetaMuScholarship.debug.xcconfig */,
 				47F308509E85C2AD6FFE9023 /* Pods-BetaMuScholarship.release.xcconfig */,
 			);
@@ -231,9 +225,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19B7BA121FF439CD004458E7 /* awsconfiguration.json in Resources */,
 				17FC2F871E258FC500174015 /* Assets.xcassets in Resources */,
-				19A8A2801FF4AB1700C959BB /* Info.plist in Resources */,
+				19BD59081FF5977300DDDF94 /* awsconfiguration.json in Resources */,
+				19BD590A1FF59A0700DDDF94 /* Info.plist in Resources */,
 				19B7BA0E1FF4337F004458E7 /* LaunchScreen.storyboard in Resources */,
 				17FC2F851E258FC500174015 /* Main.storyboard in Resources */,
 				17FC2F951E2590D800174015 /* MFAViewController.xib in Resources */,
@@ -254,6 +248,7 @@
 				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSPinpoint/AWSPinpoint.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework",
@@ -265,6 +260,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSPinpoint.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSS3.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWRevealViewController.framework",

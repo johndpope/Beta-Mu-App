@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Foundation
+import AWSCognitoIdentityProvider
 
 class SettingsTableViewController: UITableViewController {
     
@@ -20,9 +22,7 @@ class SettingsTableViewController: UITableViewController {
     func setSettingsSections() {
         settingsArray = [
             SettingsSections(sectionName: "Privacy",
-                             sectionSettings: ["Link Account to Facebook",
-                                               "Allow for Touch ID",
-                                               "Allow for Notifications"]),
+                             sectionSettings: [ "Allow for Touch ID", "Allow for Notifications"]),
             SettingsSections(sectionName: "Notifications",
                              sectionSettings: ["Dishes",
                                                "Sober Duty",
@@ -32,10 +32,21 @@ class SettingsTableViewController: UITableViewController {
         ]
     }
     
+    var response: AWSCognitoIdentityUserGetDetailsResponse?
+    var user: AWSCognitoIdentityUser?
+    var pool: AWSCognitoIdentityUserPool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setSettingsSections()
+        
+        self.tableView.delegate = self
+        self.pool = AWSCognitoIdentityUserPool(forKey: AWSCognitoUserPoolsSignInProviderKey)
+        if (self.user == nil) {
+            self.user = self.pool?.currentUser()
+        }
+        self.refresh()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -78,6 +89,24 @@ class SettingsTableViewController: UITableViewController {
         (view as! UITableViewHeaderFooterView).textLabel?.textColor = UIColor.black.withAlphaComponent(0.4)
     }
     
+    @IBAction func signOut(_ sender: Any) {
+        self.user?.signOut()
+        self.title = nil
+        self.response = nil
+        self.tableView.reloadData()
+        self.refresh()
+    }
+    
+    func refresh() {
+        self.user?.getDetails().continueOnSuccessWith { (task) -> AnyObject? in
+            DispatchQueue.main.async(execute: {
+                self.response = task.result
+                self.title = self.user?.username
+                self.tableView.reloadData()
+            })
+            return nil
+        }
+    }
     
 
     /*
