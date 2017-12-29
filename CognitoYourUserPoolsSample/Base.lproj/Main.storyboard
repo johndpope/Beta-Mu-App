@@ -1592,6 +1592,9 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="O2Z-Ld-ZTv" kind="show" identifier="yearMajorToRegistrationSegue" id="tmB-7A-jsD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1826,5 +1829,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="SWA-Yd-EN0"/>
+        <segue reference="tmB-7A-jsD"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -29,12 +29,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     private var croppedRect = CGRect.zero
     private var croppedAngle = 0
     
-    /*var year: AWSCognitoIdentityUserAttributeType
-    var major: AWSCognitoIdentityUserAttributeType
-    var brotherStatus: AWSCognitoIdentityUserAttributeType
-    var pinNumber: AWSCognitoIdentityUserAttributeType
-    var proboLevel: AWSCognitoIdentityUserAttributeType
-    var housePositions: [AWSCognitoIdentityUserAttributeType] = [] */
+    var year: String!
+    var major: String!
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var firstName: UITextField!
@@ -82,10 +78,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         // Set Phone Prefix
         if phone.text == ""
         { phone.text = "+1" }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        // Year
+        print("year: \(year)")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -93,16 +92,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             signUpConfirmationViewController.sentTo = self.sentTo
             signUpConfirmationViewController.user = self.pool?.getUser(self.username.text!)
         }
-        /* if let yearSelectionViewController = segue.destination as? YearSelectionViewController {
-            yearSelectionViewController.sentTo = self.sentTo
-            
-            if(self.year != nil) {
-                yearSelectionViewController.year = self.year
-            }
-            if(self.major != nil) {
-                yearSelectionViewController.major = self.major
-            }
-        } */
     }
     
     // MARK: Dealing With Keyboards

@@ -10,12 +10,9 @@ import UIKit
 import CoreData
 
 class YearSelectionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
-
-    /*var pool: AWSCognitoIdentityUserPool?
-    var sentTo: String?
     
-    var year: AWSCognitoIdentityUserAttributeType
-    var major: AWSCognitoIdentityUserAttributeType*/
+    var year: String = ""
+    var major: String = ""
     
     @IBOutlet weak var yearPicker: UIPickerView!
     @IBOutlet weak var majorText: UITextField!
@@ -65,6 +62,15 @@ class YearSelectionViewController: UIViewController, UIPickerViewDelegate, UIPic
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "yearMajorToRegistrationSegue" {
+            if let toViewController = segue.destination as? SignUpViewController {
+                toViewController.year = "bitch"
+            }
+        }
     }
     
     /* func setYear(_ year: String) {
