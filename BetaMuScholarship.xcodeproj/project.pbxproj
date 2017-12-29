@@ -31,6 +31,12 @@
 		19B7BA0E1FF4337F004458E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19B7BA0D1FF4337E004458E7 /* LaunchScreen.storyboard */; };
 		19BD59081FF5977300DDDF94 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19BD59071FF5977300DDDF94 /* awsconfiguration.json */; };
 		19BD590A1FF59A0700DDDF94 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19BD59091FF59A0600DDDF94 /* Info.plist */; };
+		19BD590C1FF5A24800DDDF94 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD590B1FF5A24800DDDF94 /* NotificationsViewController.swift */; };
+		19D39AF21FF65B7E004774E1 /* ProboLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D39AED1FF65B7D004774E1 /* ProboLevelViewController.swift */; };
+		19D39AF31FF65B7E004774E1 /* HousePositionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D39AEE1FF65B7D004774E1 /* HousePositionsTableViewCell.swift */; };
+		19D39AF41FF65B7E004774E1 /* YearSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D39AEF1FF65B7D004774E1 /* YearSelectionViewController.swift */; };
+		19D39AF51FF65B7E004774E1 /* HousePositionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D39AF01FF65B7D004774E1 /* HousePositionsTableViewController.swift */; };
+		19D39AF61FF65B7E004774E1 /* BrotherStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D39AF11FF65B7E004774E1 /* BrotherStatusViewController.swift */; };
 		4833988C60102DA180C62707 /* Pods_BetaMuScholarship.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3522F83493D20E6124AD9F /* Pods_BetaMuScholarship.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +66,13 @@
 		19B7BA0D1FF4337E004458E7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19BD59071FF5977300DDDF94 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		19BD59091FF59A0600DDDF94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19BD590B1FF5A24800DDDF94 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		19BD590D1FF5A90400DDDF94 /* BetaMuScholarship.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BetaMuScholarship.entitlements; sourceTree = "<group>"; };
+		19D39AED1FF65B7D004774E1 /* ProboLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProboLevelViewController.swift; sourceTree = "<group>"; };
+		19D39AEE1FF65B7D004774E1 /* HousePositionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HousePositionsTableViewCell.swift; sourceTree = "<group>"; };
+		19D39AEF1FF65B7D004774E1 /* YearSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearSelectionViewController.swift; sourceTree = "<group>"; };
+		19D39AF01FF65B7D004774E1 /* HousePositionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HousePositionsTableViewController.swift; sourceTree = "<group>"; };
+		19D39AF11FF65B7E004774E1 /* BrotherStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrotherStatusViewController.swift; sourceTree = "<group>"; };
 		47F308509E85C2AD6FFE9023 /* Pods-BetaMuScholarship.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetaMuScholarship.release.xcconfig"; path = "Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship.release.xcconfig"; sourceTree = "<group>"; };
 		7BCE56A3AD0E4E396DDFBDB9 /* Pods-BetaMuScholarship.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetaMuScholarship.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship.debug.xcconfig"; sourceTree = "<group>"; };
 		7E3522F83493D20E6124AD9F /* Pods_BetaMuScholarship.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BetaMuScholarship.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +94,7 @@
 		17FC2F731E258FC500174015 = {
 			isa = PBXGroup;
 			children = (
+				19BD590D1FF5A90400DDDF94 /* BetaMuScholarship.entitlements */,
 				17FC2F7E1E258FC500174015 /* Beta Mu Scholarship */,
 				17FC2F7D1E258FC500174015 /* Products */,
 				EAFF2674E44540356AB209E7 /* Pods */,
@@ -115,23 +129,29 @@
 		198D9C011FF42E15008BFA35 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1933281C1FF4BC9300318A17 /* CropViewController.swift */,
 				19A8A2711FF4A88A00C959BB /* Announcments_Main_ViewController.swift */,
+				19D39AF11FF65B7E004774E1 /* BrotherStatusViewController.swift */,
+				17FC2FA21E25A5D000174015 /* ConfirmForgotPasswordViewController.swift */,
+				17FC2F9E1E259F3200174015 /* ConfirmSignUpViewController.swift */,
+				1933281C1FF4BC9300318A17 /* CropViewController.swift */,
+				17FC2FA61E25A9A200174015 /* DevicesDetailTableViewController.swift */,
+				17FC2FA01E25A25900174015 /* ForgotPasswordViewController.swift */,
+				19D39AEE1FF65B7D004774E1 /* HousePositionsTableViewCell.swift */,
+				19D39AF01FF65B7D004774E1 /* HousePositionsTableViewController.swift */,
 				17FC2F961E25928900174015 /* MFAViewController.swift */,
 				17FC2F941E2590D800174015 /* MFAViewController.xib */,
-				17FC2F981E25940900174015 /* SignInViewController.swift */,
-				17FC2F9C1E259E5D00174015 /* SignUpViewController.swift */,
-				17FC2F9E1E259F3200174015 /* ConfirmSignUpViewController.swift */,
-				17FC2FA01E25A25900174015 /* ForgotPasswordViewController.swift */,
-				17FC2FA21E25A5D000174015 /* ConfirmForgotPasswordViewController.swift */,
-				17FC2FA41E25A77600174015 /* UserDetailTableViewController.swift */,
-				17FC2FA61E25A9A200174015 /* DevicesDetailTableViewController.swift */,
+				19BD590B1FF5A24800DDDF94 /* NotificationsViewController.swift */,
+				19D39AED1FF65B7D004774E1 /* ProboLevelViewController.swift */,
 				19A8A2741FF4A97300C959BB /* ProboRequirementsViewController.swift */,
 				19A8A2781FF4A97300C959BB /* SettingsTableViewCell.swift */,
 				19A8A2771FF4A97300C959BB /* SettingsTableViewController.swift */,
 				19A8A2761FF4A97300C959BB /* SideMenuTableViewCell.swift */,
 				19A8A2751FF4A97300C959BB /* SideMenuTableViewController.swift */,
+				17FC2F981E25940900174015 /* SignInViewController.swift */,
+				17FC2F9C1E259E5D00174015 /* SignUpViewController.swift */,
 				19A8A2731FF4A97300C959BB /* StudyHoursViewController.swift */,
+				17FC2FA41E25A77600174015 /* UserDetailTableViewController.swift */,
+				19D39AEF1FF65B7D004774E1 /* YearSelectionViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +219,11 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 3AT7FQ5S2Z;
 						LastSwiftMigration = 0920;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -316,6 +341,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19D39AF41FF65B7E004774E1 /* YearSelectionViewController.swift in Sources */,
+				19BD590C1FF5A24800DDDF94 /* NotificationsViewController.swift in Sources */,
 				19A8A27C1FF4A97300C959BB /* SideMenuTableViewCell.swift in Sources */,
 				19A8A2721FF4A88A00C959BB /* Announcments_Main_ViewController.swift in Sources */,
 				17FC2FA31E25A5D000174015 /* ConfirmForgotPasswordViewController.swift in Sources */,
@@ -325,7 +352,11 @@
 				17FC2F9F1E259F3200174015 /* ConfirmSignUpViewController.swift in Sources */,
 				17FC2F9B1E259E0500174015 /* Constants.swift in Sources */,
 				1933281D1FF4BC9300318A17 /* CropViewController.swift in Sources */,
+				19D39AF51FF65B7E004774E1 /* HousePositionsTableViewController.swift in Sources */,
+				19D39AF21FF65B7E004774E1 /* ProboLevelViewController.swift in Sources */,
 				17FC2F991E25940900174015 /* SignInViewController.swift in Sources */,
+				19D39AF31FF65B7E004774E1 /* HousePositionsTableViewCell.swift in Sources */,
+				19D39AF61FF65B7E004774E1 /* BrotherStatusViewController.swift in Sources */,
 				19A8A27A1FF4A97300C959BB /* ProboRequirementsViewController.swift in Sources */,
 				17FC2F971E25928900174015 /* MFAViewController.swift in Sources */,
 				19A8A27E1FF4A97300C959BB /* SettingsTableViewCell.swift in Sources */,
@@ -377,7 +408,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -431,6 +462,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

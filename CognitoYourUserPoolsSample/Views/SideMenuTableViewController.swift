@@ -10,6 +10,13 @@ import UIKit
 
 class SideMenuTableViewController: UITableViewController {
     
+    struct SideMenuSections {
+        var sectionName : String!
+        var sectionLabels : [String]!
+    }
+    
+    var sideMenuArr = [SideMenuSections]()
+    
     // MARK: Properties
     var sideMenuViews: [String] =
     ["Announcements",
@@ -28,12 +35,26 @@ class SideMenuTableViewController: UITableViewController {
     "Bylaws"
     ]
     
+    @IBOutlet var menuTableView: UITableView!
     @IBOutlet weak var userImage: UIImageView!
     
     let cellIdentifier = "SideMenuTableViewCell"
     
+    func setSideMenuSections() {
+        sideMenuArr = [
+            SideMenuSections(sectionName: "General",
+                             sectionLabels: sideMenuViews)
+        ]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setSideMenuSections()
+        
+        //self.automaticallyAdjustsScrollViewInsets = false
+
+        self.tableView.contentInsetAdjustmentBehavior = .never
         
         userImage.layer.borderWidth = 1
         userImage.layer.masksToBounds = false
@@ -49,87 +70,99 @@ class SideMenuTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        UINavigationBar.appearance().clipsToBounds = true
+        
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        
+        statusBar.backgroundColor = UIColor.black
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        UIApplication.shared.statusBarStyle = .default
+        
+        UINavigationBar.appearance().clipsToBounds = true
+        
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        
+        statusBar.backgroundColor = UIColor.init(red: 5, green: 60, blue: 104)
+        
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 // can increase this to increase subsections
+        return sideMenuArr.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sideMenuViews.count
+        return sideMenuArr[section].sectionLabels.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SideMenuTableViewCell
-        
-        // Fetches the appropriate meal for the data source layout.
-        
-        let viewTitle = sideMenuViews[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SideMenuTableViewCell
 
         // Table view cells are reused and should be dequeued using a cell identifier.
         
-        cell?.viewLabel.text = viewTitle
+        cell.viewLabel.text = sideMenuArr[indexPath.section].sectionLabels[indexPath.row]
+        cell.backgroundColor = hexStringToUIColor(hex: "22c1fa")
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         //cell?.backgroundColor = UIColor(white: 1, alpha: 0.25)
-        cell?.backgroundColor = UIColor(white: 1, alpha: 0)
-        return cell!
+        cell.backgroundColor = UIColor(white: 1, alpha: 0)
+        
+        return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sideMenuArr[section].sectionName
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = hexStringToUIColor(hex: "20b1f8")
+        (view as! UITableViewHeaderFooterView).textLabel?.textColor = UIColor.black.withAlphaComponent(0.4)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.row == 0){
             //self.dismiss(animated: true, completion: nil)
             self.performSegue(withIdentifier: "announcementSegue", sender: self)
         }
+        if(indexPath.row == 1){
+            self.performSegue(withIdentifier: "notificationSegue", sender: self)
+        }
+        
         if(indexPath.row == 6){
             self.performSegue(withIdentifier: "studyHoursSegue", sender: self)
         }
         // self.performSegue(withIdentifier: "yourIdentifier", sender: self)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
     }
-    */
+
 
 }

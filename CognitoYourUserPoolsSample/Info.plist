@@ -2,36 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allow access to Photo Library</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb1933945360188561</string>
-			</array>
-		</dict>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-	</array>
-	<key>FacebookAppID</key>
-	<string>1933945360188561</string>
-	<key>FacebookDisplayName</key>
-	<string>Beta Mu Scholarship</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en_US</string>
+	<key>CFBundleDisplayName</key>
+	<string>Beta Theta Pi</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -44,10 +20,38 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1933945360188561</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>1933945360188561</string>
+	<key>FacebookDisplayName</key>
+	<string>Beta Mu Scholarship</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow access to Photo Library</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Gotham Bold Regular.ttf</string>

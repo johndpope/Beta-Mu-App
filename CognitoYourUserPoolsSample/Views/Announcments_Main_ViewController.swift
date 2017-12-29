@@ -7,13 +7,34 @@
 
 import UIKit
 import SWRevealViewController
+import AWSCognitoIdentityProvider
 
 class Announcments_Main_ViewController: UIViewController {
     
     @IBOutlet weak var sideMenu: UIBarButtonItem!
     @IBOutlet weak var settings: UIBarButtonItem!
     
+    var response: AWSCognitoIdentityUserGetDetailsResponse?
+    var user: AWSCognitoIdentityUser?
+    var pool: AWSCognitoIdentityUserPool?
+    
+    func refresh() {
+        self.user?.getDetails().continueOnSuccessWith { (task) -> AnyObject? in
+            DispatchQueue.main.async(execute: {
+                self.response = task.result
+                //self.title = self.user?.username
+            })
+            return nil
+        }
+    }
+    
     override func viewDidLoad() {
+    
+        self.pool = AWSCognitoIdentityUserPool(forKey: AWSCognitoUserPoolsSignInProviderKey)
+        if (self.user == nil) {
+            self.user = self.pool?.currentUser()
+        }
+        self.refresh()
         
         if self.revealViewController() != nil {
             sideMenu.target = self.revealViewController()

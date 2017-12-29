@@ -54,6 +54,27 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        UINavigationBar.appearance().clipsToBounds = true
+        
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        
+        statusBar.backgroundColor = UIColor.black
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        UIApplication.shared.statusBarStyle = .default
+        
+        UINavigationBar.appearance().clipsToBounds = true
+        
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        
+        statusBar.backgroundColor = UIColor.init(red: 5, green: 60, blue: 104)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -74,7 +95,7 @@ class SettingsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsTableViewCell", for: indexPath) as! SettingsTableViewCell
 
         cell.label.text = settingsArray[indexPath.section].sectionSettings[indexPath.row]
-        cell.backgroundColor = hexStringToUIColor(hex: "0480F5").withAlphaComponent(0.2)
+        cell.backgroundColor = hexStringToUIColor(hex: "22c1fa")
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         return cell
@@ -85,7 +106,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = hexStringToUIColor(hex: "0480F5").withAlphaComponent(0.4)
+        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = hexStringToUIColor(hex: "20b1f8")
         (view as! UITableViewHeaderFooterView).textLabel?.textColor = UIColor.black.withAlphaComponent(0.4)
     }
     
