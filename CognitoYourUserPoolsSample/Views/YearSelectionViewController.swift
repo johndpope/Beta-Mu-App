@@ -11,8 +11,8 @@ import CoreData
 
 class YearSelectionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
     
-    var year: String = ""
-    var major: String = ""
+    var year: String!
+    var major: String!
     
     @IBOutlet weak var yearPicker: UIPickerView!
     @IBOutlet weak var majorText: UITextField!
@@ -24,31 +24,6 @@ class YearSelectionViewController: UIViewController, UIPickerViewDelegate, UIPic
 
         self.yearPicker.dataSource = self
         self.yearPicker.delegate = self
-        
-        /* if(getCoreData_String("year") != ""){
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                if(self.getCoreData_String("year") == "Freshman"){
-                    self.yearPicker.selectRow(0, inComponent:0, animated:true)
-                }
-                else if(self.getCoreData_String("year") == "Sophomore"){
-                    self.yearPicker.selectRow(1, inComponent:0, animated:true)
-                }
-                else if(self.getCoreData_String("year") == "Junior"){
-                    self.yearPicker.selectRow(2, inComponent:0, animated:true)
-                }
-                else if(self.getCoreData_String("year") == "Senior"){
-                    self.yearPicker.selectRow(3, inComponent:0, animated:true)
-                }
-                else if(self.getCoreData_String("year") == "Super Sensior"){
-                    self.yearPicker.selectRow(4, inComponent:0, animated:true)
-                }
-            }
-            
-        }
-        
-        if(getCoreData_String("major") != ""){
-            major.text = getCoreData_String("major")
-        } */
         
         pickerData = [
             "Freshman",
@@ -68,34 +43,38 @@ class YearSelectionViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         if segue.identifier == "yearMajorToRegistrationSegue" {
             if let toViewController = segue.destination as? SignUpViewController {
-                toViewController.year = "bitch"
+                toViewController.year = self.year
+                toViewController.major = self.majorText.text!
             }
         }
     }
     
-    /* func setYear(_ year: String) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let newUser = NSEntityDescription.insertNewObject(forEntityName: "UserInfo", into: context)
-        newUser.setValue(year, forKey: "year")
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving")
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if (year == "Freshman") {
+            self.yearPicker.selectRow(0, inComponent:0, animated:true)
         }
+        else if(year == "Sophomore"){
+            self.yearPicker.selectRow(1, inComponent:0, animated:true)
+        }
+        else if(year == "Junior"){
+            self.yearPicker.selectRow(2, inComponent:0, animated:true)
+        }
+        else if(year == "Senior"){
+            self.yearPicker.selectRow(3, inComponent:0, animated:true)
+        }
+        else if(year == "Super Senior"){
+            self.yearPicker.selectRow(4, inComponent:0, animated:true)
+        }
+        
+        if (major != "") {
+            majorText.text = major
+        }
+        
+        // Year
+        print("year_: \(year)")
+        print("major_: \(major)")
     }
-    
-    func setMajor(_ major: String) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let newUser = NSEntityDescription.insertNewObject(forEntityName: "UserInfo", into: context)
-        newUser.setValue(major, forKey: "major")
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving")
-        }
-    } */
     
     // DataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -114,39 +93,7 @@ class YearSelectionViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(pickerData[row])
-        // set year
+        year = pickerData[row]
     }
-    
-    /* func getCoreData_String(_ attribute: String) -> String {
-        var stringArr:[String] = []
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "UserInfo")
-        request.returnsObjectsAsFaults = false
-        do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                if let stringValue = data.value(forKey: attribute) as? String
-                {
-                    stringArr.append(stringValue)
-                }
-            }
-        } catch {
-            print("Failed")
-        }
-        let count = stringArr.count
-        if(count > 0){
-            return stringArr[count - 1]
-        }
-        else{
-            return ""
-        }
-    } */
-    
-    @IBAction func selectYearAndMajor(_ sender: Any) {
-        // set major
-    }
-    
     
 }

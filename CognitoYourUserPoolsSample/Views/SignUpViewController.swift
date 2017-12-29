@@ -31,6 +31,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     var year: String!
     var major: String!
+    var pinNum: String!
+    var brotherStatus: String!
+    var proboLevel: String!
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var firstName: UITextField!
@@ -85,12 +88,32 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         // Year
         print("year: \(year)")
+        print("major: \(major)")
+        print("Brother Status: \(brotherStatus)")
+        print("Pin Number: \(pinNum)")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let signUpConfirmationViewController = segue.destination as? ConfirmSignUpViewController {
             signUpConfirmationViewController.sentTo = self.sentTo
             signUpConfirmationViewController.user = self.pool?.getUser(self.username.text!)
+        }
+        if segue.identifier == "registrationToYearMajorToSegue" {
+            if let toViewController = segue.destination as? YearSelectionViewController {
+                toViewController.year = self.year
+                toViewController.major = self.major
+            }
+        }
+        if segue.identifier == "registrationToBrotherStatusSegue" {
+            if let toViewController = segue.destination as? BrotherStatusViewController {
+                toViewController.pinNum = self.pinNum
+                toViewController.brotherStatus = self.brotherStatus
+            }
+        }
+        if segue.identifier == "registrationToProboLevelSegue" {
+            if let toViewController = segue.destination as? ProboLevelViewController {
+                toViewController.proboLevel = self.proboLevel
+            }
         }
     }
     

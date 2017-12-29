@@ -10,8 +10,10 @@ import UIKit
 
 class BrotherStatusViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var brotherStatusPicker: UIPickerView!
+    var brotherStatus: String!
+    var pinNum: String!
     
+    @IBOutlet weak var brotherStatusPicker: UIPickerView!
     @IBOutlet weak var pinNumber: UITextField!
     
     var pickerData: [String] = [String]()
@@ -21,24 +23,6 @@ class BrotherStatusViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         self.brotherStatusPicker.dataSource = self
         self.brotherStatusPicker.delegate = self
-        
-        /* if(getCoreData_String("brotherStatus") != ""){
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                if(self.getCoreData_String("brotherStatus") == "Brother"){
-                    self.brotherStatusPicker.selectRow(0, inComponent:0, animated:true)
-                }
-                else if(self.getCoreData_String("brotherStatus") == "Pledge"){
-                    self.brotherStatusPicker.selectRow(1, inComponent:0, animated:true)
-                }
-                else if(self.getCoreData_String("brotherStatus") == "Neophyte"){
-                    self.brotherStatusPicker.selectRow(2, inComponent:0, animated:true)
-                }
-                
-                if(self.getCoreData_Int("pinNumber") != 0){
-                    self.pinNumber.text = String(self.getCoreData_Int("pinNumber"))
-                }
-            }
-        } */
         
         pickerData = [
             "Brother",
@@ -53,29 +37,35 @@ class BrotherStatusViewController: UIViewController, UIPickerViewDelegate, UIPic
         // Dispose of any resources that can be recreated.
     }
     
-    /*func setBrotherStatus(_ year: String) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let newUser = NSEntityDescription.insertNewObject(forEntityName: "UserInfo", into: context)
-        newUser.setValue(year, forKey: "brotherStatus")
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving")
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "brotherStatusToRegistrationSegue" {
+            if let toViewController = segue.destination as? SignUpViewController {
+                toViewController.brotherStatus = self.brotherStatus
+                toViewController.pinNum = self.pinNumber.text!
+            }
         }
     }
     
-    func setPinNumber(_ pinNum: Int32) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let newUser = NSEntityDescription.insertNewObject(forEntityName: "UserInfo", into: context)
-        newUser.setValue(pinNum, forKey: "pinNumber")
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving")
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if (brotherStatus == "Brother") {
+            self.brotherStatusPicker.selectRow(0, inComponent:0, animated:true)
         }
-    } */
+        else if(brotherStatus == "Pledge"){
+            self.brotherStatusPicker.selectRow(1, inComponent:0, animated:true)
+        }
+        else if(brotherStatus == "Neophyte"){
+            self.brotherStatusPicker.selectRow(2, inComponent:0, animated:true)
+        }
+
+        if (pinNum != "") {
+            pinNumber.text = pinNum
+        }
+        
+        print("Brother Status_: \(brotherStatus)")
+        print("Pin Number_: \(pinNum)")
+    }
     
     // DataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -100,9 +90,10 @@ class BrotherStatusViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
         else {
             self.pinNumber.isUserInteractionEnabled = false
+            pinNumber.text = ""
         }
         
-        //setBrotherStatus(pickerData[row])
+        brotherStatus = pickerData[row]
     }
     
     /* func getCoreData_String(_ attribute: String) -> String {

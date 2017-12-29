@@ -568,7 +568,7 @@
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                         <connections>
-                                                                            <segue destination="PY4-2n-kqB" kind="show" identifier="yearMajorSegue" id="4fg-xw-tCu"/>
+                                                                            <segue destination="PY4-2n-kqB" kind="show" identifier="registrationToYearMajorToSegue" id="4fg-xw-tCu"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9GQ-Fy-Ma3">
@@ -588,7 +588,7 @@
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                         <connections>
-                                                                            <segue destination="Jjb-bX-m9e" kind="show" id="zTk-6Q-CKo"/>
+                                                                            <segue destination="Jjb-bX-m9e" kind="show" identifier="registrationToBrotherStatusSegue" id="zTk-6Q-CKo"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8L-VG-cu0">
@@ -608,7 +608,7 @@
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                         <connections>
-                                                                            <segue destination="4XI-oO-JP4" kind="show" id="bLh-hU-PrP"/>
+                                                                            <segue destination="4XI-oO-JP4" kind="show" identifier="registrationToProboLevelSegue" id="bLh-hU-PrP"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toU-u9-V13">
@@ -1664,6 +1664,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="selectBrotherStatus:" destination="Jjb-bX-m9e" eventType="touchUpInside" id="lMW-Tk-EHn"/>
+                                            <segue destination="O2Z-Ld-ZTv" kind="show" identifier="brotherStatusToRegistrationSegue" id="eLb-RK-F0t"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1725,6 +1726,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="selectBrotherStatus:" destination="Jjb-bX-m9e" eventType="touchUpInside" id="2Ls-r9-hwt"/>
+                                            <segue destination="O2Z-Ld-ZTv" kind="show" identifier="proboLevelToRegistrationSegue" id="oHO-8V-xe7"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1829,6 +1831,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="SWA-Yd-EN0"/>
-        <segue reference="tmB-7A-jsD"/>
+        <segue reference="oHO-8V-xe7"/>
     </inferredMetricsTieBreakers>
 </document>

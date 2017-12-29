@@ -12,6 +12,8 @@ class ProboLevelViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBOutlet weak var proboLevelPicker: UIPickerView!
     
+    var proboLevel: String!
+    
     var pickerData: [String] = [String]()
     
     
@@ -52,6 +54,32 @@ class ProboLevelViewController: UIViewController, UIPickerViewDelegate, UIPicker
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "proboLevelToRegistrationSegue" {
+            if let toViewController = segue.destination as? SignUpViewController {
+                toViewController.proboLevel = self.proboLevel
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if (proboLevel == "Not on Probo (GPA >= 2.85)") {
+            self.proboLevelPicker.selectRow(0, inComponent:0, animated:true)
+        }
+        else if(proboLevel == "Probo 1 (2.85 > GPA >= 2.5)"){
+            self.proboLevelPicker.selectRow(1, inComponent:0, animated:true)
+        }
+        else if(proboLevel == "Probo 2 (2.5 > GPA >= 2.0)"){
+            self.proboLevelPicker.selectRow(2, inComponent:0, animated:true)
+        }
+        else if(proboLevel == "Probo 3 (2.0 > GPA)"){
+            self.proboLevelPicker.selectRow(3, inComponent:0, animated:true)
+        }
+        
+    }
+    
     /* func setProboLevel(_ year: String) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -81,34 +109,7 @@ class ProboLevelViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(pickerData[row])
-        // setProboLevel
+        proboLevel = pickerData[row]
     }
     
-    /*func getCoreData_String(_ attribute: String) -> String {
-        var stringArr:[String] = []
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "UserInfo")
-        request.returnsObjectsAsFaults = false
-        do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                if let stringValue = data.value(forKey: attribute) as? String
-                {
-                    stringArr.append(stringValue)
-                }
-            }
-        } catch {
-            print("Failed")
-        }
-        let count = stringArr.count
-        if(count > 0){
-            return stringArr[count - 1]
-        }
-        else{
-            return ""
-        }
-    } */
-        
 }
