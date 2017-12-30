@@ -18,6 +18,7 @@
 import UIKit
 import AWSCognitoIdentityProvider
 import AWSPinpoint
+import AWSS3
 import IQKeyboardManagerSwift
 import GooglePlaces
 import GoogleMaps
@@ -70,6 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pool = AWSCognitoIdentityUserPool(forKey: AWSCognitoUserPoolsSignInProviderKey)
         self.storyboard = UIStoryboard(name: "Main", bundle: nil)
         pool.delegate = self
+        
+        
+        // S3 Intializations
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.USEast1,identityPoolId:"us-east-1_TqwJbw9rG")
+        let configuration = AWSServiceConfiguration(region:.USEast1, credentialsProvider:credentialsProvider)
+        
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
         
         // Smart Keyboards
         IQKeyboardManager.sharedManager().enable = true

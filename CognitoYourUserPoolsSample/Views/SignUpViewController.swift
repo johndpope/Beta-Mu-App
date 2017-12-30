@@ -17,6 +17,7 @@
 
 import Foundation
 import AWSCognitoIdentityProvider
+import AWSS3
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CropViewControllerDelegate, UIGestureRecognizerDelegate {
     
@@ -53,6 +54,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
     
+    let transferManager = AWSS3TransferManager.default()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
@@ -82,8 +85,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         userImage.contentMode = .scaleAspectFit
         
         // Set Phone Prefix
-        if phone.text == ""
-        { phone.text = "+1" }
+        /* if phone.text == ""
+        { phone.text = "+1" } */
 
     }
     
@@ -463,6 +466,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         updateImageViewWithImage(image, fromCropViewController: cropViewController)
         userImage.image = image
         print("image updated #1")
+        
+        
+        
     }
     
     public func cropViewController(_ cropViewController: CropViewController, didCropToCircularImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
