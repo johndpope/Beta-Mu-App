@@ -37,6 +37,7 @@
 		19D39AF41FF65B7E004774E1 /* YearSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D39AEF1FF65B7D004774E1 /* YearSelectionViewController.swift */; };
 		19D39AF51FF65B7E004774E1 /* HousePositionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D39AF01FF65B7D004774E1 /* HousePositionsTableViewController.swift */; };
 		19D39AF61FF65B7E004774E1 /* BrotherStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D39AF11FF65B7E004774E1 /* BrotherStatusViewController.swift */; };
+		19D39AF81FF84458004774E1 /* IMG_1434.png in Resources */ = {isa = PBXBuildFile; fileRef = 19D39AF71FF84458004774E1 /* IMG_1434.png */; };
 		4833988C60102DA180C62707 /* Pods_BetaMuScholarship.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3522F83493D20E6124AD9F /* Pods_BetaMuScholarship.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		19D39AEF1FF65B7D004774E1 /* YearSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearSelectionViewController.swift; sourceTree = "<group>"; };
 		19D39AF01FF65B7D004774E1 /* HousePositionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HousePositionsTableViewController.swift; sourceTree = "<group>"; };
 		19D39AF11FF65B7E004774E1 /* BrotherStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrotherStatusViewController.swift; sourceTree = "<group>"; };
+		19D39AF71FF84458004774E1 /* IMG_1434.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_1434.png; sourceTree = "<group>"; };
 		47F308509E85C2AD6FFE9023 /* Pods-BetaMuScholarship.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetaMuScholarship.release.xcconfig"; path = "Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship.release.xcconfig"; sourceTree = "<group>"; };
 		7BCE56A3AD0E4E396DDFBDB9 /* Pods-BetaMuScholarship.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetaMuScholarship.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BetaMuScholarship/Pods-BetaMuScholarship.debug.xcconfig"; sourceTree = "<group>"; };
 		7E3522F83493D20E6124AD9F /* Pods_BetaMuScholarship.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BetaMuScholarship.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +120,7 @@
 				17FC2F7F1E258FC500174015 /* AppDelegate.swift */,
 				17FC2F831E258FC500174015 /* Main.storyboard */,
 				17FC2F861E258FC500174015 /* Assets.xcassets */,
+				19D39AF71FF84458004774E1 /* IMG_1434.png */,
 				19BD59091FF59A0600DDDF94 /* Info.plist */,
 				19B7BA0D1FF4337E004458E7 /* LaunchScreen.storyboard */,
 				19BD59071FF5977300DDDF94 /* awsconfiguration.json */,
@@ -254,6 +257,7 @@
 				19BD59081FF5977300DDDF94 /* awsconfiguration.json in Resources */,
 				19BD590A1FF59A0700DDDF94 /* Info.plist in Resources */,
 				19B7BA0E1FF4337F004458E7 /* LaunchScreen.storyboard in Resources */,
+				19D39AF81FF84458004774E1 /* IMG_1434.png in Resources */,
 				17FC2F851E258FC500174015 /* Main.storyboard in Resources */,
 				17FC2F951E2590D800174015 /* MFAViewController.xib in Resources */,
 			);

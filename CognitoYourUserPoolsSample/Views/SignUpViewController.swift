@@ -54,11 +54,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
     
-    let transferManager = AWSS3TransferManager.default()
+    let bucketName = "betamuscholarship-deployments-mobilehub-1531569242"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
+        
+        // S3 Intializations
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.USEast1, identityPoolId:"us-east-1:bb023064-cbc1-40da-8cfc-84cc04d5485f")
+        let configuration = AWSServiceConfiguration(region:.USEast1, credentialsProvider:credentialsProvider)
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
         
         
         // Set Delegates
@@ -383,7 +388,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             }
             
             let alertController = UIAlertController(title: "Confirm Details", message: userInfoString, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: handler)
+            let okAction = UIAlertAction(title: "Confirm", style: .default, handler: handler)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alertController.addAction(okAction)
             alertController.addAction(cancelAction)
@@ -448,6 +453,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         
         self.image = image
         
+        /* let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        print("chosen image: \(chosenImage)")
+        let imageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+        print("image url: \(imageUrl)")
+        let imageName = imageUrl.lastPathComponent
+        print("image name: \(imageName)") */
+        /*let documentDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as String;
+        print("document dir: \(documentDir)")
+        let photoUrl = NSURL(fileURLWithPath: documentDir)
+        print("photo url: \(photoUrl)")
+        let localPath = photoUrl.URLByAppendingPathComponent(imageName!)
+        print("local path: \(localPath)")
+        self.localFile = localPath*/
         
         //If profile picture, push onto the same navigation stack
         if croppingStyle == .circular {
@@ -466,6 +484,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         updateImageViewWithImage(image, fromCropViewController: cropViewController)
         userImage.image = image
         print("image updated #1")
+        
+        if let img : UIImage = userImage.image! as UIImage{
+            let path = (NSTemporaryDirectory() as NSString).appendingPathComponent("image.png")
+            let imageData: NSData = UIImagePNGRepresentation(img)! as NSData
+            imageData.write(toFile: path as String, atomically: true)
+            
+            // once the image is saved we can use the path to create a local fileurl
+            let url:NSURL = NSURL(fileURLWithPath: path as String)
+            
+            print("url: \(url)")
+            
+            let fileName = lastName.text! + firstName.text! + "ProfPic"
+            
+            uploadFile(with: fileName, type: "PNG", url: url)
+        }
         
         
         
@@ -532,13 +565,54 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         resignAllKeyboads()
         
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
-        let imagePickerController = UIImagePickerController()
-        
-        // Only allow photos to be picked, not taken.
-        imagePickerController.sourceType = .photoLibrary
-        
-        // Make sure ViewController is notified when the user picks an image.
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
+        if(firstName.text == "" || lastName.text == "") {
+            let alertController = UIAlertController(title: "Name Required",
+                                                    message: "Fill out username and password before uploading profile picture.",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion:  nil)
+        } else {
+            let imagePickerController = UIImagePickerController()
+            
+            // Only allow photos to be picked, not taken.
+            imagePickerController.sourceType = .photoLibrary
+            
+            // Make sure ViewController is notified when the user picks an image.
+            imagePickerController.delegate = self
+            present(imagePickerController, animated: true, completion: nil)
+        }
     }
+    
+    // MARK: Upload Function (S3)
+    
+    func uploadFile(with resource: String, type: String, url: NSURL) {
+        let key = "\(resource).\(type)"
+        print(resource)
+        print(type)
+        /*let localImagePath = Bundle.main.path(forResource: resource, ofType: type)
+        print(localImagePath)*/
+        //let localImageUrl = URL(fileURLWithPath: localImagePath!)
+        
+        let request = AWSS3TransferManagerUploadRequest()!
+        
+        request.bucket = bucketName
+        request.key = key
+        request.body = url as URL
+        request.acl = .publicReadWrite
+        
+        let transferManager = AWSS3TransferManager.default()
+        transferManager.upload(request).continueWith(executor: AWSExecutor.mainThread()) { (task) -> Any? in
+            
+            if let error = task.error {
+                print(error)
+            }
+            if task.result != nil {
+                print("Uploaded \(key)")
+            }
+            
+            return nil
+        }
+    }
+    
 }
