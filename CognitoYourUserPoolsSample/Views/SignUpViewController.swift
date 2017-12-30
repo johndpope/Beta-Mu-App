@@ -34,6 +34,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     var pinNum: String!
     var brotherStatus: String!
     var proboLevel: String!
+    var checked = Set<IndexPath>()
+    var userHousePositions: [String]!
+    var housePositions: String!  // String version
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var firstName: UITextField!
@@ -81,16 +84,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         // Set Phone Prefix
         if phone.text == ""
         { phone.text = "+1" }
-        
+
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        // Year
         print("year: \(year)")
         print("major: \(major)")
         print("Brother Status: \(brotherStatus)")
         print("Pin Number: \(pinNum)")
+        print("Probo Level: \(proboLevel)")
+        if(userHousePositions != nil) {
+            housePositions = userHousePositions.joined(separator: ", ")
+            print("House Positions: \(housePositions)")
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,6 +122,46 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         if segue.identifier == "registrationToProboLevelSegue" {
             if let toViewController = segue.destination as? ProboLevelViewController {
                 toViewController.proboLevel = self.proboLevel
+            }
+        }
+        if segue.identifier == "registrationToHousePositionsSegue" {
+            if let toViewController = segue.destination as? HousePositionsTableViewController {
+                toViewController.checked = self.checked
+            }
+        }
+    }
+    
+    @IBAction func unwindFromYearMajor(_ sender: UIStoryboardSegue) {
+        if sender.source is YearSelectionViewController {
+            if let senderYM = sender.source as? YearSelectionViewController {
+                year = senderYM.year
+                major = senderYM.majorText.text
+            }
+        }
+    }
+    
+    @IBAction func unwindFromBrotherStatus(_ sender: UIStoryboardSegue) {
+        if sender.source is BrotherStatusViewController {
+            if let senderBS = sender.source as? BrotherStatusViewController {
+                brotherStatus = senderBS.brotherStatus
+                pinNum = senderBS.pinNumber.text
+            }
+        }
+    }
+    
+    @IBAction func unwindFromPoboLevel(_ sender: UIStoryboardSegue) {
+        if sender.source is ProboLevelViewController {
+            if let senderPL = sender.source as? ProboLevelViewController {
+                proboLevel = senderPL.proboLevel
+            }
+        }
+    }
+    
+    @IBAction func unwindFromHousePositions(_ sender: UIStoryboardSegue) {
+        if sender.source is HousePositionsTableViewController {
+            if let senderHP = sender.source as? HousePositionsTableViewController {
+                checked = senderHP.checked
+                userHousePositions = senderHP.userHousePositions
             }
         }
     }
@@ -207,6 +256,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             passwordsMatch = true
         }
         
+        // MARK: Default Attributes
         var attributes = [AWSCognitoIdentityUserAttributeType]()
         
         if let firstNameValue = self.firstName.text, !firstNameValue.isEmpty {
@@ -255,7 +305,88 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             attributes.append(address!)
         }
         
+        // MARK: Custom Attribute
+        if let contactEmailValue = self.contactEmail.text, !contactEmailValue.isEmpty {
+            let contactEmail = AWSCognitoIdentityUserAttributeType()
+            contactEmail?.name = "custom:contact_email"
+            contactEmail?.value = contactEmailValue
+            attributes.append(contactEmail!)
+        }
+        
+        if let yearValue = self.year, !yearValue.isEmpty {
+            let year = AWSCognitoIdentityUserAttributeType()
+            year?.name = "custom:year"
+            year?.value = yearValue
+            attributes.append(year!)
+        }
+        
+        if let majorValue = self.major, !majorValue.isEmpty {
+            let major = AWSCognitoIdentityUserAttributeType()
+            major?.name = "custom:major"
+            major?.value = majorValue
+            attributes.append(major!)
+        }
+        
+        if let brotherStatusValue = self.brotherStatus, !brotherStatusValue.isEmpty {
+            let brotherStatus = AWSCognitoIdentityUserAttributeType()
+            brotherStatus?.name = "custom:brother_status"
+            brotherStatus?.value = brotherStatusValue
+            attributes.append(brotherStatus!)
+        }
+        
+        if let pinNumValue = self.pinNum, !pinNumValue.isEmpty {
+            let pinNum = AWSCognitoIdentityUserAttributeType()
+            pinNum?.name = "custom:pin_number"
+            pinNum?.value = pinNumValue
+            attributes.append(pinNum!)
+        }
+        
+        if let proboLevelValue = self.proboLevel, !proboLevelValue.isEmpty {
+            let proboLevel = AWSCognitoIdentityUserAttributeType()
+            proboLevel?.name = "custom:probo_level"
+            if(proboLevelValue == "Not on Probo (GPA >= 2.85)") {
+                proboLevel?.value = "0"
+            }
+            else if (proboLevelValue == "Probo 1 (2.85 > GPA >= 2.5)") {
+                proboLevel?.value = "1"
+            }
+            else if (proboLevelValue == "Probo 2 (2.5 > GPA >= 2.0)") {
+                proboLevel?.value = "2"
+            }
+            else if (proboLevelValue == "Probo 3 (2.0 > GPA)") {
+                proboLevel?.value = "3"
+            }
+            proboLevel?.value = proboLevelValue
+            attributes.append(proboLevel!)
+        }
+        
+        if userHousePositions != nil {
+            let userHousePositionsValue = userHousePositions.joined(separator: ", ")
+            let housePositions = AWSCognitoIdentityUserAttributeType()
+            housePositions?.name = "custom:house_positions"
+            housePositions?.value = userHousePositionsValue
+            attributes.append(housePositions!)
+        }
+
+        
         if passwordsMatch {
+            
+            let userInfoString: String = "First: \(firstName.text!)\nLast: \(lastName.text!)\nBirthday: \(birthDate.text!)\nAddress: \(streetAddress.text!) \(city.text!)\(city.text == "" && state.text == "" ? "" : ",") \(state.text!) \(zip.text!)\nYear: \(year == nil ? "" : year!)\nMajor: \(major == nil ? "" : major!)\nBrother Status:\(brotherStatus == nil ? "" : brotherStatus!)\nPin Number: \(pinNum == nil ? "" : pinNum!)\nProbo Level: \(proboLevel == nil ? "" : proboLevel!)\nHousePositions: \(housePositions == nil ? "" : housePositions!)"
+            
+            var signUpConfirmed: Bool = false
+            
+            func handler (alert: UIAlertAction!) {
+                signUpConfirmed = true
+            }
+            
+            let alertController = UIAlertController(title: "Confirm Details", message: userInfoString, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: handler)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion:  nil)
+            
+            if(signUpConfirmed){
             //sign up the user
             self.pool?.signUp(userNameValue, password: passwordValue, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task) -> Any? in
                 guard let strongSelf = self else { return nil }
@@ -280,6 +411,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
                     
                 })
                 return nil
+            }
             }
         }
     }

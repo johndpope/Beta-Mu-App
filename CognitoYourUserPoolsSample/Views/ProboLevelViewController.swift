@@ -23,24 +23,6 @@ class ProboLevelViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.proboLevelPicker.dataSource = self
         self.proboLevelPicker.delegate = self
         
-        
-        /* if(getCoreData_String("proboLevel") != ""){
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                if(self.getCoreData_String("proboLevel") == "Not on Probo (GPA > 2.85)"){
-                    self.proboLevelPicker.selectRow(0, inComponent:0, animated:true)
-                }
-                else if(self.getCoreData_String("proboLevel") == "Probo 1 (2.85 > GPA >= 2.5)"){
-                    self.proboLevelPicker.selectRow(1, inComponent:0, animated:true)
-                }
-                else if(self.getCoreData_String("proboLevel") == "Probo 2 (2.5 > GPA >= 2.0)"){
-                    self.proboLevelPicker.selectRow(2, inComponent:0, animated:true)
-                }
-                else if(self.getCoreData_String("proboLevel") == "Probo 3 (2.0 > GPA)"){
-                    self.proboLevelPicker.selectRow(3, inComponent:0, animated:true)
-                }
-            }
-        } */
-        
         pickerData = [
             "Not on Probo (GPA >= 2.85)",
             "Probo 1 (2.85 > GPA >= 2.5)",

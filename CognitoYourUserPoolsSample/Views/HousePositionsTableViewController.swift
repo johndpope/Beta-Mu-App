@@ -17,14 +17,14 @@ class HousePositionsTableViewController: UITableViewController {
     
     var checked = Set<IndexPath>()
     
+    var userHousePositions: [String]! = [String]()
+    
     var housePosArr = [HousePositionSections]()
     
     func setHousePositionSections() {
         housePosArr = [
             HousePositionSections(sectionName: "Misc. House Positions",
                              sectionPositions: ["President",
-                                               "House Manager",
-                                               "Kitchen Manager",
                                                "Chapter Counselor",
                                                "IFC Representative",
                                                "Technology Chair",
@@ -55,21 +55,57 @@ class HousePositionsTableViewController: UITableViewController {
             HousePositionSections(sectionName: "Education",
                                   sectionPositions: ["VP of Education",
                                                     "Education Chair",
-                                                    "Education Committee Member"]),
+                                                    "Education Committee Member",
+                                                    "Active Member Education"]),
             
             HousePositionSections(sectionName: "Recruitment",
                                   sectionPositions: ["VP of Recruitment",
                                                     "Recruitment Committee Member"]),
             
             HousePositionSections(sectionName: "Risk Management",
-                                  sectionPositions: ["VP of Risk", "Risk Committee Member"]),
+                                  sectionPositions: ["VP of Risk",
+                                                     "Risk Committee Member",
+                                                     "House Manager"]),
             
             HousePositionSections(sectionName: "Finance",
-                                  sectionPositions: ["VP of Finance"]),
+                                  sectionPositions: ["VP of Finance",
+                                                     "Kitchen Manager"]),
             
             HousePositionSections(sectionName: "Communication",
-                                  sectionPositions: ["VP of Communication"])
+                                  sectionPositions: ["VP of Communication",
+                                                     "Social Media Chair"])
         ]
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "housePositionsToRegistrationSegue" {
+            if let toViewController = segue.destination as? SignUpViewController
+            {
+                toViewController.checked = self.checked
+                toViewController.userHousePositions = self.userHousePositions
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        /* if (year == "Freshman") {
+            self.yearPicker.selectRow(0, inComponent:0, animated:true)
+        }
+        else if(year == "Sophomore"){
+            self.yearPicker.selectRow(1, inComponent:0, animated:true)
+        }
+        else if(year == "Junior"){
+            self.yearPicker.selectRow(2, inComponent:0, animated:true)
+        }
+        else if(year == "Senior"){
+            self.yearPicker.selectRow(3, inComponent:0, animated:true)
+        }
+        else if(year == "Super Senior"){
+            self.yearPicker.selectRow(4, inComponent:0, animated:true)
+        } */
+        
     }
     
     override func viewDidLoad() {
@@ -107,8 +143,23 @@ class HousePositionsTableViewController: UITableViewController {
         
         cell.checkMark.isHidden = !self.checked.contains(indexPath)
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            
+            if (!cell.checkMark.isHidden) {
+                //print(cell.label.text!)
+                self.userHousePositions.append(cell.label.text!)
+            } else {
+                if(self.userHousePositions != nil){
+                    self.userHousePositions = self.userHousePositions.filter{$0 != self.housePosArr[indexPath.section].sectionPositions[indexPath.row]}
+                }
+            }
+            
+        }
+        
         cell.backgroundColor = hexStringToUIColor(hex: "22c1fa")
-
+        
+        
+        
         return cell
     }
     
@@ -135,39 +186,7 @@ class HousePositionsTableViewController: UITableViewController {
         
         tableView.reloadRows(at:[indexPath], with:.fade)
         
-        //if (tableView.cellForRow(at: indexPath)?.checkMark.hidden == true){
-        //    tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-        //} else {
-        //    tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
-        //}
     }
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

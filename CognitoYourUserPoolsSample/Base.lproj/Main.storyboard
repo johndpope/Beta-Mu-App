@@ -466,7 +466,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2o7-Vg-nak">
                                                                         <rect key="frame" x="0.0" y="100.00000000000001" width="335" height="29.999999999999986"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="uE5-ZP-gfS">
+                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email (Purdue)" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="uE5-ZP-gfS">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="163.66666666666666" height="30"/>
                                                                                 <nil key="textColor"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -628,7 +628,7 @@
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                         <connections>
-                                                                            <segue destination="9Vg-BW-CyA" kind="show" id="fRf-0U-aXV"/>
+                                                                            <segue destination="9Vg-BW-CyA" kind="show" identifier="registrationToHousePositionsSegue" id="fRf-0U-aXV"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -1576,10 +1576,10 @@
                                             <action selector="pinNumber:" destination="MMC-LK-JLt" eventType="editingDidEnd" id="Bei-NS-xGK"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsJ-2J-xIe">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmH-Wi-JmK">
                                         <rect key="frame" x="0.0" y="262" width="374" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="VjZ-kG-yHW"/>
+                                            <constraint firstAttribute="height" constant="40" id="DIk-8N-vRK"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <state key="normal" title="Save" backgroundImage="redButton">
@@ -1593,7 +1593,8 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="O2Z-Ld-ZTv" kind="show" identifier="yearMajorToRegistrationSegue" id="tmB-7A-jsD"/>
+                                            <action selector="selectBrotherStatus:" destination="Jjb-bX-m9e" eventType="touchUpInside" id="u83-Pg-caa"/>
+                                            <segue destination="j4i-H6-dsB" kind="unwind" unwindAction="unwindFromYearMajor:" id="Svn-uX-lCc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1620,6 +1621,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fG-6V-hdi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="j4i-H6-dsB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1177" y="1135"/>
         </scene>
@@ -1646,10 +1648,10 @@
                                             <action selector="pinNumber:" destination="MMC-LK-JLt" eventType="editingDidEnd" id="tEr-Ig-U3C"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLB-P3-HAe">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ge-k2-aDB">
                                         <rect key="frame" x="0.0" y="262" width="374" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Dx3-GT-2ir"/>
+                                            <constraint firstAttribute="height" constant="40" id="bIF-0G-PAo"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <state key="normal" title="Save" backgroundImage="redButton">
@@ -1663,8 +1665,8 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="selectBrotherStatus:" destination="Jjb-bX-m9e" eventType="touchUpInside" id="lMW-Tk-EHn"/>
-                                            <segue destination="O2Z-Ld-ZTv" kind="show" identifier="brotherStatusToRegistrationSegue" id="eLb-RK-F0t"/>
+                                            <action selector="selectBrotherStatus:" destination="Jjb-bX-m9e" eventType="touchUpInside" id="khw-tO-A2G"/>
+                                            <segue destination="MMC-LK-JLt" kind="unwind" unwindAction="unwindFromBrotherStatus:" id="3Aa-pI-vGd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1726,7 +1728,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="selectBrotherStatus:" destination="Jjb-bX-m9e" eventType="touchUpInside" id="2Ls-r9-hwt"/>
-                                            <segue destination="O2Z-Ld-ZTv" kind="show" identifier="proboLevelToRegistrationSegue" id="oHO-8V-xe7"/>
+                                            <segue destination="fcs-c2-rQ3" kind="unwind" unwindAction="unwindFromPoboLevel:" id="1wO-5M-hdx"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1750,6 +1752,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TXc-m2-anD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fcs-c2-rQ3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2596" y="1135"/>
         </scene>
@@ -1808,10 +1811,17 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="House Positions" id="zfe-S8-fUa"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationItem key="navigationItem" title="House Positions" id="ZxZ-RQ-SBp">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="FBW-TG-0Rw">
+                            <connections>
+                                <segue destination="UkB-mS-Dze" kind="unwind" unwindAction="unwindFromHousePositions:" id="kRs-9c-Yju"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVw-dg-a4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="UkB-mS-Dze" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3345" y="1135"/>
         </scene>
@@ -1831,6 +1841,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="SWA-Yd-EN0"/>
-        <segue reference="oHO-8V-xe7"/>
     </inferredMetricsTieBreakers>
 </document>
