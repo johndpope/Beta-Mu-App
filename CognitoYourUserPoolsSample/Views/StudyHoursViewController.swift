@@ -12,6 +12,7 @@ import SWRevealViewController
 import GooglePlacePicker
 import AWSDynamoDB
 import AWSCognitoIdentityProvider
+import AWSS3
 import EPSignature
 
 class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPSignatureDelegate {
@@ -24,6 +25,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     @IBOutlet weak var timer: UILabel!
     
     let locationManager = CLLocationManager()
+     let bucketName = "beta-mu-signature-bucket"
     
     var initalLocation:CLLocationCoordinate2D!
     
@@ -38,6 +40,8 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     var lastName: String!
     var firstName: String!
     var proboLevel: String!
+    
+    var signatureURL: String!
     
     var seconds = 0
     var minutes = 0
@@ -302,7 +306,6 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
                 
                 //self.dataChanged = true
             }
-            
             return nil
         })
     }
@@ -336,6 +339,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         var Location:String? = ""
         var Week:NSNumber? = 0
         var Probo_Level:String? = ""
+        var SigURL:String? = ""
         
         //should be ignored according to ignoreAttributes
         var internalName:String?
@@ -372,7 +376,59 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         imgViewSignature.image = signatureImage
         imgWidthConstraint.constant = boundingRect.size.width
         imgHeightConstraint.constant = boundingRect.size.height
+        
+        if let img : UIImage = imgViewSignature.image! as UIImage{
+            let path = (NSTemporaryDirectory() as NSString).appendingPathComponent("image.png")
+            let imageData: NSData = UIImagePNGRepresentation(img)! as NSData
+            imageData.write(toFile: path as String, atomically: true)
+            
+            // once the image is saved we can use the path to create a local fileurl
+            let url:NSURL = NSURL(fileURLWithPath: path as String)
+            
+            print("url: \(url)")
+            
+            let date = Date()
+            let calendar = Calendar.current
+            
+            let year = calendar.component(.year, from: date)
+            let month = calendar.component(.month, from: date)
+            let day = calendar.component(.day, from: date)
+            let time = calendar.component(.minute, from: date)
+            
+            
+            let fileName = lastName! + firstName! + "\(month)" + "-" + "\(day)" + "-" + "\(year)" + "-" + "\(timew)" + "Signature"
+            
+            uploadFile(with: fileName, type: "PNG", url: url)
+            
+            signatureURL = "https://s3.amazonaws.com/beta-mu-signature-bucket/" + fileName + ".PNG"
+        }
+        
+        
         submitData()
+    }
+    
+    func uploadFile(with resource: String, type: String, url: NSURL) {
+        let key = "\(resource).\(type)"
+        let request = AWSS3TransferManagerUploadRequest()!
+        
+        request.bucket = bucketName
+        request.key = key
+        request.body = url as URL
+        request.acl = .publicReadWrite
+        
+        let transferManager = AWSS3TransferManager.default()
+        transferManager.upload(request).continueWith(executor: AWSExecutor.mainThread()) { (task) -> Any? in
+            
+            if let error = task.error {
+                print(error)
+            }
+            if task.result != nil {
+                print("Uploaded \(key)")
+            }
+            
+            return nil
+        }
+        
     }
     
     func submitData() {
@@ -390,6 +446,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         tableRow?.Hours = (Double(days * 24 + hours) + Double(minutes)/60) as NSNumber?
         tableRow?.Location = locationName
         tableRow?.Week = (day/7 - 1) as NSNumber?
+        tableRow?.SigURL = signatureURL
         
         self.insertTableRow(tableRow!)
         
