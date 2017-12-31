@@ -257,8 +257,8 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
             for index in 1..<(self.response?.userAttributes?.count)! {
                 print("index: \(index)")
                 var userAttribute = self.response?.userAttributes![index]
-                print("name: \(userAttribute?.name)")
-                print("value: \(userAttribute?.value)")
+                print("name: \(userAttribute?.name!)")
+                print("value: \(userAttribute?.value!)")
                 
                 if(userAttribute?.name! == "custom:probo_level") {
                     print("XXXcustomProboLevel")

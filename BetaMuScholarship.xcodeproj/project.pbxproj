@@ -286,7 +286,6 @@
 				"${BUILT_PRODUCTS_DIR}/EPSignature/EPSignature.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftySignature/SwiftySignature.framework",
 				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -301,7 +300,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EPSignature.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWRevealViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySignature.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

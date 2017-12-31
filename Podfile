@@ -15,7 +15,6 @@ target 'BetaMuScholarship' do
     pod 'GooglePlacePicker'
     pod 'TOCropViewController'
     pod 'CropViewController'
-    pod "SwiftySignature"
     pod "EPSignature"
 end
 
