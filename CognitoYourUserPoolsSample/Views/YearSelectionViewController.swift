@@ -11,7 +11,7 @@ import CoreData
 
 class YearSelectionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
     
-    var year: String!
+    var year: String = "Freshman"
     var major: String!
     
     @IBOutlet weak var yearPicker: UIPickerView!

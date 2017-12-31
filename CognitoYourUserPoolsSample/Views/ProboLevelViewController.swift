@@ -12,7 +12,7 @@ class ProboLevelViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBOutlet weak var proboLevelPicker: UIPickerView!
     
-    var proboLevel: String!
+    var proboLevel: String = "Not on Probo (GPA >= 2.85)"
     
     var pickerData: [String] = [String]()
     
@@ -58,6 +58,9 @@ class ProboLevelViewController: UIViewController, UIPickerViewDelegate, UIPicker
         }
         else if(proboLevel == "Probo 3 (2.0 > GPA)"){
             self.proboLevelPicker.selectRow(3, inComponent:0, animated:true)
+        }
+        else {
+            self.proboLevelPicker.selectRow(0, inComponent:0, animated:true)
         }
         
     }

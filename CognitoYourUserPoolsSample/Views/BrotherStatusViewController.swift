@@ -10,7 +10,7 @@ import UIKit
 
 class BrotherStatusViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    var brotherStatus: String!
+    var brotherStatus: String = "Brother"
     var pinNum: String!
     
     @IBOutlet weak var brotherStatusPicker: UIPickerView!
@@ -58,7 +58,7 @@ class BrotherStatusViewController: UIViewController, UIPickerViewDelegate, UIPic
         else if(brotherStatus == "Neophyte"){
             self.brotherStatusPicker.selectRow(2, inComponent:0, animated:true)
         }
-
+        
         if (pinNum != "") {
             pinNumber.text = pinNum
         }
@@ -95,60 +95,6 @@ class BrotherStatusViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         brotherStatus = pickerData[row]
     }
-    
-    /* func getCoreData_String(_ attribute: String) -> String {
-        var stringArr:[String] = []
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "UserInfo")
-        request.returnsObjectsAsFaults = false
-        do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                if let stringValue = data.value(forKey: attribute) as? String
-                {
-                    stringArr.append(stringValue)
-                }
-            }
-        } catch {
-            print("Failed")
-        }
-        let count = stringArr.count
-        if(count > 0){
-            return stringArr[count - 1]
-        }
-        else{
-            return ""
-        }
-    }
-    
-    func getCoreData_Int(_ attribute: String) -> Int32 {
-        var intArr:[Int32] = []
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "UserInfo")
-        request.returnsObjectsAsFaults = false
-        do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                if let intValue = data.value(forKey: attribute) as? Int32
-                {
-                    intArr.append(intValue)
-                }
-            }
-        } catch {
-            print("Failed")
-        }
-        let count = intArr.count
-        if(count > 0){
-            return intArr[count - 1]
-        }
-        else{
-            return 0
-        }
-    } */
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         pinNumber.resignFirstResponder()

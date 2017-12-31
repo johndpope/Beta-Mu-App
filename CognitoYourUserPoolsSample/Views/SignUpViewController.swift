@@ -38,6 +38,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     var checked = Set<IndexPath>()
     var userHousePositions: [String]!
     var housePositions: String!  // String version
+    var profilePicURL: String!
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var firstName: UITextField!
@@ -104,7 +105,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         print("Pin Number: \(pinNum)")
         print("Probo Level: \(proboLevel)")
         if(userHousePositions != nil) {
-            housePositions = userHousePositions.joined(separator: ", ")
+            housePositions = Array(Set(userHousePositions)).joined(separator: ", ")
+            print("userHousePositions: \(userHousePositions)")
             print("House Positions: \(housePositions)")
         }
         
@@ -117,24 +119,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         }
         if segue.identifier == "registrationToYearMajorToSegue" {
             if let toViewController = segue.destination as? YearSelectionViewController {
-                toViewController.year = self.year
-                toViewController.major = self.major
+                if(self.year != nil){ toViewController.year = self.year }
+                if(self.major != nil) {toViewController.major = self.major }
             }
         }
         if segue.identifier == "registrationToBrotherStatusSegue" {
             if let toViewController = segue.destination as? BrotherStatusViewController {
-                toViewController.pinNum = self.pinNum
-                toViewController.brotherStatus = self.brotherStatus
+                if(self.pinNum != nil){ toViewController.pinNum = self.pinNum }
+                if(self.brotherStatus != nil){ toViewController.brotherStatus = self.brotherStatus }
             }
         }
         if segue.identifier == "registrationToProboLevelSegue" {
             if let toViewController = segue.destination as? ProboLevelViewController {
-                toViewController.proboLevel = self.proboLevel
+                if(self.proboLevel != nil){ toViewController.proboLevel = self.proboLevel }
             }
         }
         if segue.identifier == "registrationToHousePositionsSegue" {
             if let toViewController = segue.destination as? HousePositionsTableViewController {
-                toViewController.checked = self.checked
+                if(self.checked != nil){ toViewController.checked = self.checked }
             }
         }
     }
@@ -280,6 +282,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             lastName?.value = lastNameValue
             attributes.append(lastName!)
         }
+        
+        if let profilePicURLValue = self.profilePicURL, !profilePicURLValue.isEmpty {
+            let profilePicURL = AWSCognitoIdentityUserAttributeType()
+            profilePicURL?.name = "custom:profile_pic_url"
+            profilePicURL?.value = profilePicURLValue
+            attributes.append(profilePicURL!)
+        }
 
         if var birthDateValue = self.birthDate.text, !birthDateValue.isEmpty {
             print("yo")
@@ -369,58 +378,57 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         }
         
         if userHousePositions != nil {
-            let userHousePositionsValue = userHousePositions.joined(separator: ", ")
+            let userHousePositionsValue = Array(Set(userHousePositions)).joined(separator: ", ")
             let housePositions = AWSCognitoIdentityUserAttributeType()
             housePositions?.name = "custom:house_positions"
             housePositions?.value = userHousePositionsValue
             attributes.append(housePositions!)
         }
-
         
         if passwordsMatch {
             
-            let userInfoString: String = "First: \(firstName.text!)\nLast: \(lastName.text!)\nBirthday: \(birthDate.text!)\nAddress: \(streetAddress.text!) \(city.text!)\(city.text == "" && state.text == "" ? "" : ",") \(state.text!) \(zip.text!)\nYear: \(year == nil ? "" : year!)\nMajor: \(major == nil ? "" : major!)\nBrother Status:\(brotherStatus == nil ? "" : brotherStatus!)\nPin Number: \(pinNum == nil ? "" : pinNum!)\nProbo Level: \(proboLevel == nil ? "" : proboLevel!)\nHousePositions: \(housePositions == nil ? "" : housePositions!)"
+            let userInfoString: String = "First: \(firstName.text!)\nLast: \(lastName.text!)\nBirthday: \(birthDate.text!)\nContact Email: \(contactEmail.text!)\nPhone: \(phone.text!)\nAddress: \(streetAddress.text!) \(city.text!)\(city.text == "" && state.text == "" ? "" : ",") \(state.text!) \(zip.text!)\nYear: \(year == nil ? "" : year!)\nMajor: \(major == nil ? "" : major!)\nBrother Status: \(brotherStatus == nil ? "" : brotherStatus!)\nPin Number: \(pinNum == nil ? "" : pinNum!)\nProbo Level: \(proboLevel == nil ? "" : proboLevel!)\nHouse Positions: \(housePositions == nil ? "" : housePositions!)"
             
-            var signUpConfirmed: Bool = false
-            
-            func handler (alert: UIAlertAction!) {
-                signUpConfirmed = true
+            func handlerConfirmed () {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    print("signing up user")
+                    self.pool?.signUp(userNameValue, password: passwordValue, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task) -> Any? in
+                        guard let strongSelf = self else { return nil }
+                        DispatchQueue.main.async(execute: {
+                            if let error = task.error as NSError? {
+                                let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
+                                                                        message: error.userInfo["message"] as? String,
+                                                                        preferredStyle: .alert)
+                                let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
+                                alertController.addAction(retryAction)
+                                
+                                self?.present(alertController, animated: true, completion:  nil)
+                            } else if let result = task.result  {
+                                // handle the case where user has to confirm his identity via email / SMS
+                                if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) {
+                                    strongSelf.sentTo = result.codeDeliveryDetails?.destination
+                                    strongSelf.performSegue(withIdentifier: "confirmSignUpSegue", sender:sender)
+                                } else {
+                                    let _ = strongSelf.navigationController?.popToRootViewController(animated: true)
+                                }
+                            }
+                            
+                        })
+                        return nil
+                    }
+                }
+                
+                print("Sign up confirmed")
             }
             
             let alertController = UIAlertController(title: "Confirm Details", message: userInfoString, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Confirm", style: .default, handler: handler)
+            let okAction = UIAlertAction(title: "Confirm", style: .default, handler: {action in handlerConfirmed()})
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alertController.addAction(okAction)
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion:  nil)
-            
-            if(signUpConfirmed){
-            //sign up the user
-            self.pool?.signUp(userNameValue, password: passwordValue, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task) -> Any? in
-                guard let strongSelf = self else { return nil }
-                DispatchQueue.main.async(execute: {
-                    if let error = task.error as NSError? {
-                        let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
-                                                                message: error.userInfo["message"] as? String,
-                                                                preferredStyle: .alert)
-                        let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
-                        alertController.addAction(retryAction)
-                        
-                        self?.present(alertController, animated: true, completion:  nil)
-                    } else if let result = task.result  {
-                        // handle the case where user has to confirm his identity via email / SMS
-                        if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) {
-                            strongSelf.sentTo = result.codeDeliveryDetails?.destination
-                            strongSelf.performSegue(withIdentifier: "confirmSignUpSegue", sender:sender)
-                        } else {
-                            let _ = strongSelf.navigationController?.popToRootViewController(animated: true)
-                        }
-                    }
-                    
-                })
-                return nil
-            }
-            }
+
         }
     }
     
@@ -498,6 +506,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             let fileName = lastName.text! + firstName.text! + "ProfPic"
             
             uploadFile(with: fileName, type: "PNG", url: url)
+            
+            profilePicURL = "https://s3.amazonaws.com/betamuscholarship-deployments-mobilehub-1531569242/" + fileName
         }
         
         
@@ -588,12 +598,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     func uploadFile(with resource: String, type: String, url: NSURL) {
         let key = "\(resource).\(type)"
-        print(resource)
-        print(type)
-        /*let localImagePath = Bundle.main.path(forResource: resource, ofType: type)
-        print(localImagePath)*/
-        //let localImageUrl = URL(fileURLWithPath: localImagePath!)
-        
         let request = AWSS3TransferManagerUploadRequest()!
         
         request.bucket = bucketName
@@ -613,6 +617,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             
             return nil
         }
+        
     }
     
 }
