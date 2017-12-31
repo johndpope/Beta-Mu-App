@@ -1205,6 +1205,9 @@
                         <barButtonItem key="rightBarButtonItem" image="settingsIcon" id="9RS-OC-l8f"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="imgHeightConstraint" destination="6bd-uY-fLq" id="7Wj-e2-oX5"/>
+                        <outlet property="imgViewSignature" destination="fAa-Z8-uR5" id="cyC-99-Q6S"/>
+                        <outlet property="imgWidthConstraint" destination="6is-q8-bCO" id="aMe-Vh-7OC"/>
                         <outlet property="selectClassButton" destination="jbr-L6-4m1" id="a8D-eJ-q8P"/>
                         <outlet property="setLocationButton" destination="LJS-P6-cqL" id="4xT-wg-pmP"/>
                         <outlet property="settings" destination="9RS-OC-l8f" id="WJU-Gj-37s"/>
@@ -1214,6 +1217,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYa-CK-B9T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fAa-Z8-uR5">
+                    <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="6bd-uY-fLq"/>
+                        <constraint firstAttribute="width" constant="374" id="6is-q8-bCO"/>
+                    </constraints>
+                </imageView>
             </objects>
             <point key="canvasLocation" x="406" y="1900"/>
         </scene>
@@ -1831,6 +1841,6 @@
         <image name="timer" width="53" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SWA-Yd-EN0"/>
+        <segue reference="8h0-6o-bKK"/>
     </inferredMetricsTieBreakers>
 </document>

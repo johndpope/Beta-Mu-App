@@ -32,6 +32,7 @@
 		19BD59081FF5977300DDDF94 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 19BD59071FF5977300DDDF94 /* awsconfiguration.json */; };
 		19BD590A1FF59A0700DDDF94 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19BD59091FF59A0600DDDF94 /* Info.plist */; };
 		19BD590C1FF5A24800DDDF94 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD590B1FF5A24800DDDF94 /* NotificationsViewController.swift */; };
+		19BFAF781FF8D66300F12203 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BFAF771FF8D66300F12203 /* SignatureViewController.swift */; };
 		19D39AF21FF65B7E004774E1 /* ProboLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D39AED1FF65B7D004774E1 /* ProboLevelViewController.swift */; };
 		19D39AF31FF65B7E004774E1 /* HousePositionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D39AEE1FF65B7D004774E1 /* HousePositionsTableViewCell.swift */; };
 		19D39AF41FF65B7E004774E1 /* YearSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D39AEF1FF65B7D004774E1 /* YearSelectionViewController.swift */; };
@@ -69,6 +70,7 @@
 		19BD59091FF59A0600DDDF94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19BD590B1FF5A24800DDDF94 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		19BD590D1FF5A90400DDDF94 /* BetaMuScholarship.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BetaMuScholarship.entitlements; sourceTree = "<group>"; };
+		19BFAF771FF8D66300F12203 /* SignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		19D39AED1FF65B7D004774E1 /* ProboLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProboLevelViewController.swift; sourceTree = "<group>"; };
 		19D39AEE1FF65B7D004774E1 /* HousePositionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HousePositionsTableViewCell.swift; sourceTree = "<group>"; };
 		19D39AEF1FF65B7D004774E1 /* YearSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearSelectionViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				19A8A2731FF4A97300C959BB /* StudyHoursViewController.swift */,
 				17FC2FA41E25A77600174015 /* UserDetailTableViewController.swift */,
 				19D39AEF1FF65B7D004774E1 /* YearSelectionViewController.swift */,
+				19BFAF771FF8D66300F12203 /* SignatureViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -280,8 +283,10 @@
 				"${BUILT_PRODUCTS_DIR}/AWSPinpoint/AWSPinpoint.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/EPSignature/EPSignature.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftySignature/SwiftySignature.framework",
 				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -293,8 +298,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSPinpoint.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSS3.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EPSignature.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWRevealViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySignature.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,6 +360,7 @@
 				19A8A2721FF4A88A00C959BB /* Announcments_Main_ViewController.swift in Sources */,
 				17FC2FA31E25A5D000174015 /* ConfirmForgotPasswordViewController.swift in Sources */,
 				19A8A2791FF4A97300C959BB /* StudyHoursViewController.swift in Sources */,
+				19BFAF781FF8D66300F12203 /* SignatureViewController.swift in Sources */,
 				17FC2FA11E25A25900174015 /* ForgotPasswordViewController.swift in Sources */,
 				17FC2F9D1E259E5D00174015 /* SignUpViewController.swift in Sources */,
 				17FC2F9F1E259F3200174015 /* ConfirmSignUpViewController.swift in Sources */,

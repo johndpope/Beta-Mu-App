@@ -9,13 +9,12 @@
 import UIKit
 import CoreLocation
 import SWRevealViewController
-import GoogleMaps
-import GooglePlaces
 import GooglePlacePicker
 import AWSDynamoDB
 import AWSCognitoIdentityProvider
+import EPSignature
 
-class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
+class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPSignatureDelegate {
 
     @IBOutlet weak var sideMenu: UIBarButtonItem!
     @IBOutlet weak var settings: UIBarButtonItem!
@@ -26,6 +25,8 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     
+    var initalLocation:CLLocationCoordinate2D!
+    
     var locationSet: Bool!
     var classSet:Bool!
     var classDescription: String!
@@ -34,10 +35,18 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationName:String!
     
+    var lastName: String!
+    var firstName: String!
+    var proboLevel: String!
+    
     var seconds = 0
     var minutes = 0
     var hours = 0
     var days = 0
+    
+    @IBOutlet weak var imgWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imgHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imgViewSignature: UIImageView!
     
     var response: AWSCognitoIdentityUserGetDetailsResponse?
     var user: AWSCognitoIdentityUser?
@@ -71,8 +80,6 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
         setupNavBarButtons()
     }
 
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -96,11 +103,11 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         if CLLocationManager.locationServicesEnabled() {
-            print("yeeeet")
             locationManager.startUpdatingLocation()
         }
         let locValue:CLLocationCoordinate2D = locationManager.location!.coordinate
         print(locValue)
+        initalLocation = locValue
         
         let center = CLLocationCoordinate2D(latitude: locValue.latitude, longitude: locValue.longitude) 
         let northEast = CLLocationCoordinate2D(latitude: center.latitude + 0.001, longitude: center.longitude + 0.001)
@@ -206,6 +213,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    
     func resetValues(_ alert: UIAlertAction) {
         if(timerCounter != nil){
             timerCounter!.invalidate()
@@ -232,54 +240,47 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
         classSet = false
         studying = !studying
         timer.text! = ""
-        
-        // logging
-        var lastName: String!
-        var firstName: String!
-        var proboLevel: String!
-        
-        for index in 1..<(self.response?.userAttributes?.count)! {
-            print("index: \(index)")
-            var userAttribute = self.response?.userAttributes![index]
-            print("name: \(userAttribute?.name)")
-            print("value: \(userAttribute?.value)")
-            
-            if(userAttribute?.name! == "custom:probo_level") {
-                print("XXXcustomProboLevel")
-                proboLevel = userAttribute?.value!
-            }
-            if(userAttribute?.name! == "given_name") {
-                print("XXXfirstName")
-                firstName = userAttribute?.value!
-            }
-            if(userAttribute?.name! == "family_name") {
-                print("XXXlastName")
-                lastName = userAttribute?.value!
-            }
-            
-        }
-        
-        let date = Date() // now
-        let cal = Calendar.current
-        let day:Int = cal.ordinality(of: .day, in: .year, for: date)!
-        print(day)
-        
-        let tableRow = DDBTableRow()
-        tableRow?.Student = firstName! + " " + lastName! as String?
-        tableRow?.Probo_Level = proboLevel! as String?
-        tableRow?.Class = classDescription as String?
-        tableRow?.Hours = (Double(days * 24 + hours) + Double(minutes)/60) as NSNumber?
-        tableRow?.Location = locationName
-        tableRow?.Week = (day/7 - 1) as NSNumber?
-        
-        self.insertTableRow(tableRow!)
-        
-        print("logged!")
-        
         seconds = 0
         minutes = 0
         hours = 0
         days = 0
+        
+        // logging
+        
+        let locValue:CLLocationCoordinate2D = locationManager.location!.coordinate
+        if(!self.compareCoordinates(self.initalLocation, locValue)){
+            let alert = UIAlertController(title: "Invalid Location!", message: "You've moved too far away from your initial study location. These study hours are invalid.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in  }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            
+            for index in 1..<(self.response?.userAttributes?.count)! {
+                print("index: \(index)")
+                var userAttribute = self.response?.userAttributes![index]
+                print("name: \(userAttribute?.name)")
+                print("value: \(userAttribute?.value)")
+                
+                if(userAttribute?.name! == "custom:probo_level") {
+                    print("XXXcustomProboLevel")
+                    proboLevel = userAttribute?.value!
+                }
+                if(userAttribute?.name! == "given_name") {
+                    print("XXXfirstName")
+                    firstName = userAttribute?.value!
+                }
+                if(userAttribute?.name! == "family_name") {
+                    print("XXXlastName")
+                    lastName = userAttribute?.value!
+                }
+                
+            }
+            
+            let signatureVC = EPSignatureViewController(signatureDelegate: self, showsDate: true, showsSaveSignatureOption: false)
+            signatureVC.subtitleText = "I affirm that \(firstName! + " " + lastName!) has studied \((Double(days * 24 + hours) + Double(minutes)/60)) hours at \(locationName!)"
+            signatureVC.title = firstName! + " " + lastName!
+            let nav = UINavigationController(rootViewController: signatureVC)
+            present(nav, animated: true, completion: nil)
+        }
     }
     
     func insertTableRow(_ tableRow: DDBTableRow) {
@@ -289,13 +290,13 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
             if let error = task.error as NSError? {
                 print("Error: \(error)")
                 
-                let alertController = UIAlertController(title: "Failed to insert the data into the table.", message: error.description, preferredStyle: UIAlertControllerStyle.alert)
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+                let alertController = UIAlertController(title: "Failed to submit study hours.", message: "Text the scholarship chair.", preferredStyle: UIAlertControllerStyle.alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true, completion: nil)
             } else {
-                let alertController = UIAlertController(title: "Succeeded", message: "Successfully inserted the data into the table.", preferredStyle: UIAlertControllerStyle.alert)
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+                let alertController = UIAlertController(title: "Succeeded", message: "Successfully submitted study hours.", preferredStyle: UIAlertControllerStyle.alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true, completion: nil)
                 
@@ -326,14 +327,15 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
     
     class DDBTableRow :AWSDynamoDBObjectModel ,AWSDynamoDBModeling  {
         
-        var Student:String?
-        var Probo_Level:String?
+        var UniqueID:NSNumber?
+        var Name:String?
         
         //set the default values of scores, wins and losses to 0
         var Class:String? = ""
         var Hours:NSNumber? = 0
         var Location:String? = ""
         var Week:NSNumber? = 0
+        var Probo_Level:String? = ""
         
         //should be ignored according to ignoreAttributes
         var internalName:String?
@@ -344,11 +346,11 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         class func hashKeyAttribute() -> String {
-            return "Student"
+            return "UniqueID"
         }
         
         class func rangeKeyAttribute() -> String {
-            return "Probo_Level"
+            return "Name"
         }
         
         class func ignoreAttributes() -> [String] {
@@ -363,6 +365,35 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate {
             })
             return nil
         }
+    }
+    
+    func epSignature(_: EPSignatureViewController, didSign signatureImage : UIImage, boundingRect: CGRect) {
+        print(signatureImage)
+        imgViewSignature.image = signatureImage
+        imgWidthConstraint.constant = boundingRect.size.width
+        imgHeightConstraint.constant = boundingRect.size.height
+        submitData()
+    }
+    
+    func submitData() {
+        
+        let date = Date() // now
+        let cal = Calendar.current
+        let day:Int = cal.ordinality(of: .day, in: .year, for: date)!
+        print(day)
+        
+        let tableRow = DDBTableRow()
+        tableRow?.UniqueID = arc4random() as NSNumber?
+        tableRow?.Name = firstName! + " " + lastName! as String?
+        tableRow?.Probo_Level = proboLevel! as String?
+        tableRow?.Class = classDescription as String?
+        tableRow?.Hours = (Double(days * 24 + hours) + Double(minutes)/60) as NSNumber?
+        tableRow?.Location = locationName
+        tableRow?.Week = (day/7 - 1) as NSNumber?
+        
+        self.insertTableRow(tableRow!)
+        
+        print("logged!")
     }
 }
 

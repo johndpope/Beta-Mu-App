@@ -109,8 +109,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AWSPinpoint/AWSPinpoint.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/EPSignature/EPSignature.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftySignature/SwiftySignature.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -121,8 +123,10 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AWSPinpoint/AWSPinpoint.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/EPSignature/EPSignature.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftySignature/SwiftySignature.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
