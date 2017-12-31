@@ -373,7 +373,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             else if (proboLevelValue == "Probo 3 (2.0 > GPA)") {
                 proboLevel?.value = "3"
             }
-            proboLevel?.value = proboLevelValue
             attributes.append(proboLevel!)
         }
         

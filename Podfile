@@ -5,6 +5,7 @@ use_frameworks!
 
 target 'BetaMuScholarship' do
     pod 'AWSCognitoIdentityProvider'
+    pod 'AWSDynamoDB'
     pod 'AWSPinpoint'
     pod 'AWSS3'
     pod 'IQKeyboardManagerSwift'

@@ -1125,7 +1125,7 @@
                                                                     <constraint firstAttribute="height" constant="60" id="4hb-OO-a9Y"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                                                <state key="normal" title="Start Studing" image="study" backgroundImage="redButton">
+                                                                <state key="normal" title="Start Studying" image="study" backgroundImage="redButton">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
@@ -1135,6 +1135,9 @@
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="startStudying:" destination="kDK-67-suG" eventType="touchUpInside" id="dhI-km-4Gd"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37u-5V-I3O" customClass="LeftAlignedIconButton" customModule="BetaMuScholarship" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="320" width="374" height="60"/>
@@ -1158,7 +1161,7 @@
                                                             <constraint firstAttribute="height" constant="380" id="pCM-8W-TS8"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gos-ro-tnT">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gos-ro-tnT">
                                                         <rect key="frame" x="0.0" y="400" width="374" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="2Dz-EW-Vb2"/>
@@ -1206,6 +1209,8 @@
                         <outlet property="setLocationButton" destination="LJS-P6-cqL" id="4xT-wg-pmP"/>
                         <outlet property="settings" destination="9RS-OC-l8f" id="WJU-Gj-37s"/>
                         <outlet property="sideMenu" destination="3Sq-6x-gem" id="hQ8-Or-VkI"/>
+                        <outlet property="startStopStudyingButton" destination="fDQ-bK-NlA" id="IMb-O8-ib2"/>
+                        <outlet property="timer" destination="Gos-ro-tnT" id="sNY-bA-Rte"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYa-CK-B9T" userLabel="First Responder" sceneMemberID="firstResponder"/>
