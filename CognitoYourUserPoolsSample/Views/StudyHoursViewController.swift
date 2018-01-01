@@ -14,19 +14,21 @@ import AWSDynamoDB
 import AWSCognitoIdentityProvider
 import AWSS3
 import EPSignature
+import Popover
 
 class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPSignatureDelegate {
 
     @IBOutlet weak var sideMenu: UIBarButtonItem!
     @IBOutlet weak var settings: UIBarButtonItem!
+    @IBOutlet weak var timerSettings: UIBarButtonItem!
     @IBOutlet weak var setLocationButton: UIButton!
     @IBOutlet weak var selectClassButton: LeftAlignedIconButton!
     @IBOutlet weak var startStopStudyingButton: LeftAlignedIconButton!
     @IBOutlet weak var timer: UILabel!
     
     let locationManager = CLLocationManager()
-     let bucketName = "beta-mu-signature-bucket"
-    
+    let bucketName = "beta-mu-signature-bucket"
+
     var initalLocation:CLLocationCoordinate2D!
     
     var locationSet: Bool!
@@ -48,6 +50,15 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     var hours = 0
     var days = 0
     
+    var aView: TimerView!
+    var startPoint: CGPoint!
+    
+    fileprivate var popover: Popover!
+    fileprivate var popoverOptions: [PopoverOption] = [
+        .type(.up),
+        .blackOverlayColor(UIColor(white: 0.0, alpha: 0.6))
+    ]
+    
     @IBOutlet weak var imgWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var imgHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imgViewSignature: UIImageView!
@@ -62,6 +73,8 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         locationManager.requestAlwaysAuthorization()
         
         // S3 Intializations
@@ -79,7 +92,12 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         locationSet = false
         classSet = false
         
-        super.viewDidLoad()
+        // Create timer view
+        timerSettings.isEnabled = false
+        timerSettings.image = nil
+        startPoint  = CGPoint(x: view.frame.width - 100, y: navigationController!.navigationBar.frame.height + (UIApplication.shared.isStatusBarHidden ? CGFloat(0) : UIApplication.shared.statusBarFrame.height))
+        aView = TimerView(frame: CGRect(x: 0, y: 0, width: view.frame.width * 2 / 3, height: 90))
+        popover = Popover(options: nil, showHandler: nil, dismissHandler: nil)
         
         setupNavBarButtons()
     }
@@ -87,6 +105,10 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func timerPopup(_ sender: Any) {
+        popover.show(aView, point: startPoint)
     }
 
     func setupNavBarButtons() {
@@ -195,9 +217,12 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         if(!studying){
             if(locationSet && classSet) {
                 studying = true
+                timerSettings.isEnabled = true
+                timerSettings.image = UIImage(named: "navTimer")
                 startStopStudyingButton.setTitle("Stop Studying", for: .normal)
-                if (timerCounter == nil){
-                    timerCounter = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(StudyHoursViewController.updateCounter), userInfo: nil, repeats: true)
+                aView.initalView = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.popover.show(self.aView, point: self.startPoint)
                 }
             } else {
                 let alert = UIAlertController(title: "Parameters Not Set", message: "Both location and class must be set for study hours to count", preferredStyle: .alert)
@@ -219,35 +244,34 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     
     
     func resetValues(_ alert: UIAlertAction) {
-        if(timerCounter != nil){
-            timerCounter!.invalidate()
-            timerCounter = nil
+        if(aView.timerCounter != nil){
+            aView.timerCounter!.invalidate()
+            aView.timerCounter = nil
         }
+        aView.initalView = false
         startStopStudyingButton.setTitle("Start Studying", for: .normal)
         locationSet = false
         classSet = false
         studying = !studying
-        timer.text! = ""
-        seconds = 0
-        minutes = 0
-        hours = 0
-        days = 0
+        timerSettings.isEnabled = false
+        timerSettings.image = nil
+        aView.timerLabel.text! = ""
+        aView.seconds = 0
+        aView.minutes = 0
+        aView.hours = 0
+        aView.days = 0
     }
     
     func logHours(_ alert: UIAlertAction) {
-        if(timerCounter != nil){
-            timerCounter!.invalidate()
-            timerCounter = nil
+        if(aView.timerCounter != nil){
+            aView.timerCounter!.invalidate()
+            aView.timerCounter = nil
         }
         startStopStudyingButton.setTitle("Start Studying", for: .normal)
+        aView.initalView = false
         locationSet = false
         classSet = false
         studying = !studying
-        timer.text! = ""
-        seconds = 0
-        minutes = 0
-        hours = 0
-        days = 0
         
         // logging
         
@@ -280,11 +304,12 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
             }
             
             let signatureVC = EPSignatureViewController(signatureDelegate: self, showsDate: true, showsSaveSignatureOption: false)
-            signatureVC.subtitleText = "I affirm that \(firstName! + " " + lastName!) has studied \((Double(days * 24 + hours) + Double(minutes)/60)) hours at \(locationName!)"
+            signatureVC.subtitleText = "I affirm that \(firstName! + " " + lastName!) has studied \((Double(aView.days * 24 + aView.hours) + Double(aView.minutes)/60)) hours at \(locationName!)"
             signatureVC.title = firstName! + " " + lastName!
             let nav = UINavigationController(rootViewController: signatureVC)
             present(nav, animated: true, completion: nil)
         }
+        
     }
     
     func insertTableRow(_ tableRow: DDBTableRow) {
@@ -309,25 +334,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
             return nil
         })
     }
-    
-    
-    @objc func updateCounter() {
-        seconds = (seconds + 1) % 60
-        if(seconds == 0){
-            minutes = (minutes + 1) % 60
-            if(minutes == 0){
-                hours = (hours + 1) % 24
-                if(hours == 0){
-                    days += 1
-                }
-            }
-        }
-        timer.text! = String(format: "%02d", days)
-            + ":" + String(format: "%02d", hours)
-            + ":" + String(format: "%02d", minutes)
-            + ":" + String(format: "%02d", seconds)
-    }
-    
+
     class DDBTableRow :AWSDynamoDBObjectModel ,AWSDynamoDBModeling  {
         
         var UniqueID:NSNumber?
@@ -393,10 +400,10 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
             let year = calendar.component(.year, from: date)
             let month = calendar.component(.month, from: date)
             let day = calendar.component(.day, from: date)
-            let time = calendar.component(.minute, from: date)
+            let minute = calendar.component(.minute, from: date)
+            let seconds = calendar.component(.second, from: date)
             
-            
-            let fileName = lastName! + firstName! + "\(month)" + "-" + "\(day)" + "-" + "\(year)" + "-" + "\(timew)" + "Signature"
+            let fileName = lastName! + firstName! + "\(month)" + "-" + "\(day)" + "-" + "\(year)" + "-" + "\(minute)" + ":" + "\(seconds)" + " " + "Signature"
             
             uploadFile(with: fileName, type: "PNG", url: url)
             
@@ -405,6 +412,14 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         
         
         submitData()
+        
+        timerSettings.isEnabled = false
+        timerSettings.image = nil
+        aView.timerLabel.text! = ""
+        aView.seconds = 0
+        aView.minutes = 0
+        aView.hours = 0
+        aView.days = 0
     }
     
     func uploadFile(with resource: String, type: String, url: NSURL) {
@@ -443,7 +458,10 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         tableRow?.Name = firstName! + " " + lastName! as String?
         tableRow?.Probo_Level = proboLevel! as String?
         tableRow?.Class = classDescription as String?
-        tableRow?.Hours = (Double(days * 24 + hours) + Double(minutes)/60) as NSNumber?
+        print("days: \(aView.days)")
+        print("hours: \(aView.hours)")
+        print("minutes: \(aView.minutes)")
+        tableRow?.Hours = (Double(aView.days * 24 + aView.hours) + Double(aView.minutes)/60) as NSNumber?
         tableRow?.Location = locationName
         tableRow?.Week = (day/7 - 1) as NSNumber?
         tableRow?.SigURL = signatureURL

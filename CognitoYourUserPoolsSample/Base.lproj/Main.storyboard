@@ -9,6 +9,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1166,7 +1167,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="2Dz-EW-Vb2"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -1202,7 +1203,14 @@
                     </view>
                     <navigationItem key="navigationItem" title="Study Hours" id="IQq-cg-qz5">
                         <barButtonItem key="leftBarButtonItem" image="hamburgerButton" id="3Sq-6x-gem"/>
-                        <barButtonItem key="rightBarButtonItem" image="settingsIcon" id="9RS-OC-l8f"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="settingsIcon" id="9RS-OC-l8f"/>
+                            <barButtonItem image="navTimer" id="cA2-lm-85x">
+                                <connections>
+                                    <action selector="timerPopup:" destination="kDK-67-suG" id="fIU-Pi-idA"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="imgHeightConstraint" destination="6bd-uY-fLq" id="7Wj-e2-oX5"/>
@@ -1213,7 +1221,8 @@
                         <outlet property="settings" destination="9RS-OC-l8f" id="WJU-Gj-37s"/>
                         <outlet property="sideMenu" destination="3Sq-6x-gem" id="hQ8-Or-VkI"/>
                         <outlet property="startStopStudyingButton" destination="fDQ-bK-NlA" id="IMb-O8-ib2"/>
-                        <outlet property="timer" destination="Gos-ro-tnT" id="sNY-bA-Rte"/>
+                        <outlet property="timer" destination="Gos-ro-tnT" id="q8h-KY-Gte"/>
+                        <outlet property="timerSettings" destination="cA2-lm-85x" id="lOL-dO-eKu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYa-CK-B9T" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1315,7 +1324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yp6-Gt-hFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1177" y="1901"/>
+            <point key="canvasLocation" x="1890" y="1899"/>
         </scene>
         <!--Announcements Navigation Controller-->
         <scene sceneID="lDW-Rd-Eun">
@@ -1834,6 +1843,7 @@
         <image name="defaultProfilePic" width="75" height="75"/>
         <image name="hamburgerButton" width="33" height="33"/>
         <image name="location" width="53" height="30"/>
+        <image name="navTimer" width="33" height="33"/>
         <image name="redButton" width="898" height="13"/>
         <image name="settingsIcon" width="33" height="33"/>
         <image name="study" width="53" height="30"/>
@@ -1841,6 +1851,6 @@
         <image name="timer" width="53" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8h0-6o-bKK"/>
+        <segue reference="SWA-Yd-EN0"/>
     </inferredMetricsTieBreakers>
 </document>

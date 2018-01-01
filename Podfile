@@ -15,6 +15,8 @@ target 'BetaMuScholarship' do
     pod 'GooglePlacePicker'
     pod 'TOCropViewController'
     pod 'CropViewController'
-    pod "EPSignature"
+    pod 'EPSignature'
+    pod 'Popover'
+    pod 'PureLayout'
 end
 
