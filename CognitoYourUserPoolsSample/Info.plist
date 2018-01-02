@@ -2,8 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<key>AWS</key>
+	<dict>
+		<key>CredentialsProvider</key>
+		<dict>
+			<key>CognitoIdentity</key>
+			<dict>
+				<key>Default</key>
+				<dict>
+					<key>PoolId</key>
+					<string>us-east-1_TqwJbw9rG</string>
+					<key>Region</key>
+					<string>us-east-1</string>
+				</dict>
+			</dict>
+		</dict>
+		<key>S3</key>
+		<dict>
+			<key>Default</key>
+			<dict>
+				<key>Region</key>
+				<string>us-east-1</string>
+			</dict>
+		</dict>
+		<key>S3TransferManager</key>
+		<dict>
+			<key>Default</key>
+			<dict>
+				<key>Region</key>
+				<string>us-east-1</string>
+			</dict>
+		</dict>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en_US</string>
 	<key>CFBundleDisplayName</key>
@@ -30,11 +60,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>FacebookAppID</key>
 	<string>1933945360188561</string>
 	<key>FacebookDisplayName</key>
 	<string>Beta Mu Scholarship</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -45,11 +77,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
+	<string>"Allow Beta Theta Pi to use location to track study hours"</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
+	<string>"Allow Beta Theta Pi to use location to track study hours"</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
+	<string>"Allow Beta Theta Pi to use location to track study hours"</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow access to Photo Library</string>
 	<key>UIAppFonts</key>
@@ -79,37 +111,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>AWS</key>
-	<dict>
-        <key>CredentialsProvider</key>
-        <dict>
-            <key>CognitoIdentity</key>
-            <dict>
-                <key>Default</key>
-                <dict>
-                    <key>PoolId</key>
-                    <string>us-east-1_TqwJbw9rG</string>
-                    <key>Region</key>
-                    <string>us-east-1</string>
-                </dict>
-            </dict>
-        </dict>
-		<key>S3TransferManager</key>
-		<dict>
-			<key>Default</key>
-			<dict>
-				<key>Region</key>
-				<string>us-east-1</string>
-			</dict>
-		</dict>
-		<key>S3</key>
-		<dict>
-			<key>Default</key>
-			<dict>
-				<key>Region</key>
-				<string>us-east-1</string>
-			</dict>
-		</dict>
-	</dict>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
