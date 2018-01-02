@@ -1206,7 +1206,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Study Hours" id="IQq-cg-qz5">
                         <barButtonItem key="leftBarButtonItem" image="hamburgerButton" id="3Sq-6x-gem"/>
-                        <barButtonItem key="rightBarButtonItem" image="settingsIcon" id="9RS-OC-l8f"/>
+                        <barButtonItem key="rightBarButtonItem" image="settingsIcon" id="PpI-D4-jAx"/>
                     </navigationItem>
                     <connections>
                         <outlet property="imgHeightConstraint" destination="6bd-uY-fLq" id="7Wj-e2-oX5"/>
@@ -1214,7 +1214,7 @@
                         <outlet property="imgWidthConstraint" destination="6is-q8-bCO" id="aMe-Vh-7OC"/>
                         <outlet property="selectClassButton" destination="jbr-L6-4m1" id="a8D-eJ-q8P"/>
                         <outlet property="setLocationButton" destination="LJS-P6-cqL" id="4xT-wg-pmP"/>
-                        <outlet property="settings" destination="9RS-OC-l8f" id="WJU-Gj-37s"/>
+                        <outlet property="settings" destination="PpI-D4-jAx" id="bFe-4S-y1Z"/>
                         <outlet property="sideMenu" destination="3Sq-6x-gem" id="hQ8-Or-VkI"/>
                         <outlet property="startStopStudyingButton" destination="fDQ-bK-NlA" id="IMb-O8-ib2"/>
                         <outlet property="timer" destination="Gos-ro-tnT" id="q8h-KY-Gte"/>
@@ -1320,7 +1320,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yp6-Gt-hFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3345" y="1902"/>
+            <point key="canvasLocation" x="2596" y="1902"/>
         </scene>
         <!--Announcements Navigation Controller-->
         <scene sceneID="lDW-Rd-Eun">
@@ -1347,7 +1347,7 @@
                     <connections>
                         <segue destination="1SQ-uj-Ils" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="3Uy-ye-wxa"/>
                         <segue destination="7L5-CS-JBn" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="5b5-kv-kBO"/>
-                        <segue destination="Rsn-0f-Kcl" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="8h0-6o-bKK"/>
+                        <segue destination="62A-ov-im4" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="ajC-Xk-gid"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSX-1l-NSQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1366,13 +1366,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="James" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kN-9H-K5s">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kN-9H-K5s">
                                     <rect key="frame" x="78" y="8" width="316" height="25"/>
                                     <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="20"/>
                                     <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weber" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W46-Sk-nUr">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W46-Sk-nUr">
                                     <rect key="frame" x="78" y="30.333333333333329" width="316" height="25"/>
                                     <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="20"/>
                                     <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1453,11 +1453,12 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="seP-Vq-2TP"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="brother" destination="W5J-jP-Cvx" id="xCe-YZ-l0a"/>
+                        <outlet property="first" destination="6kN-9H-K5s" id="Shx-6D-nqn"/>
+                        <outlet property="last" destination="W46-Sk-nUr" id="ki9-1F-6ox"/>
                         <outlet property="menuTableView" destination="txG-dx-NPX" id="vUr-D8-PHT"/>
                         <outlet property="userImage" destination="aQG-YG-mPW" id="2XR-vy-k8X"/>
-                        <segue destination="Rsn-0f-Kcl" kind="custom" identifier="announcementSegue" customClass="SWRevealViewControllerSeguePushController" id="SWA-Yd-EN0"/>
                         <segue destination="62A-ov-im4" kind="custom" identifier="studyHoursSegue" customClass="SWRevealViewControllerSeguePushController" id="Ch8-YD-KpA"/>
-                        <segue destination="gb4-JB-cFq" kind="custom" identifier="notificationSegue" customClass="SWRevealViewControllerSeguePushController" id="ZjZ-8b-YB6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKF-km-FD4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1880,7 +1881,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Abv-iy-r78" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1890" y="1902"/>
+            <point key="canvasLocation" x="1177" y="1902"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="6ca-PH-vZU">
@@ -2003,7 +2004,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2596" y="1902"/>
+            <point key="canvasLocation" x="1890" y="1902"/>
         </scene>
     </scenes>
     <resources>
@@ -2020,6 +2021,6 @@
         <image name="timer" width="53" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SWA-Yd-EN0"/>
+        <segue reference="Ch8-YD-KpA"/>
     </inferredMetricsTieBreakers>
 </document>

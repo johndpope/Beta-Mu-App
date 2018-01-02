@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWSCognitoIdentityProvider
 
 class SideMenuTableViewController: UITableViewController {
     
@@ -35,8 +36,21 @@ class SideMenuTableViewController: UITableViewController {
     "Bylaws"
     ]
     
+    var response: AWSCognitoIdentityUserGetDetailsResponse?
+    var user: AWSCognitoIdentityUser?
+    var pool: AWSCognitoIdentityUserPool?
+    
+    var lastName: String!
+    var firstName: String!
+    var proficlePicURL: String!
+    var brotherStatus: String!
+    var pinNumber: String!
+    
     @IBOutlet var menuTableView: UITableView!
     @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var first: UILabel!
+    @IBOutlet weak var last: UILabel!
+    @IBOutlet weak var brother: UILabel!
     
     let cellIdentifier = "SideMenuTableViewCell"
     
@@ -66,6 +80,31 @@ class SideMenuTableViewController: UITableViewController {
         
         userImage.isUserInteractionEnabled = true
         userImage.contentMode = .scaleAspectFit
+        
+        // Other AWS Stuff
+        self.pool = AWSCognitoIdentityUserPool(forKey: AWSCognitoUserPoolsSignInProviderKey)
+        if (self.user == nil) {
+            self.user = self.pool?.currentUser()
+        }
+        self.refresh()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.getCognitoValue()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                self.setHeader()
+            }
+        }
+       
+        
+    }
+    
+    func refresh() {
+        self.user?.getDetails().continueOnSuccessWith { (task) -> AnyObject? in
+            DispatchQueue.main.async(execute: {
+                self.response = task.result
+            })
+            return nil
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,7 +122,13 @@ class SideMenuTableViewController: UITableViewController {
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         
         statusBar.backgroundColor = UIColor.black
-        
+    
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.getCognitoValue()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                self.setHeader()
+            }
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -132,18 +177,62 @@ class SideMenuTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.row == 0){
+        /*if(indexPath.row == 0){
             //self.dismiss(animated: true, completion: nil)
             self.performSegue(withIdentifier: "announcementSegue", sender: self)
         }
         if(indexPath.row == 1){
             self.performSegue(withIdentifier: "notificationSegue", sender: self)
-        }
+        } */
         
         if(indexPath.row == 6){
             self.performSegue(withIdentifier: "studyHoursSegue", sender: self)
         }
         // self.performSegue(withIdentifier: "yourIdentifier", sender: self)
+    }
+    
+    func getCognitoValue() {
+        for index in 1..<(self.response?.userAttributes?.count)! {
+            print("index: \(index)")
+            var userAttribute = self.response?.userAttributes![index]
+            
+            if(userAttribute?.name! == "custom:profile_pic_url") {
+                proficlePicURL = userAttribute?.value!
+            }
+            if(userAttribute?.name! == "given_name") {
+                firstName = userAttribute?.value!
+            }
+            if(userAttribute?.name! == "family_name") {
+                lastName = userAttribute?.value!
+            }
+            if(userAttribute?.name! == "custom:brother_status") {
+                brotherStatus = userAttribute?.value!
+            }
+            if(userAttribute?.name! == "custom:pin_number") {
+                pinNumber = userAttribute?.value!
+            }
+        }
+    }
+    
+    func setHeader() {
+        first.text! = firstName
+        last.text! = lastName
+        
+        let brotherStatusText = brotherStatus + ((pinNumber != nil) ? " - " + pinNumber : "")
+        
+        brother.text! = brotherStatusText
+        
+        
+        if(proficlePicURL != nil) {
+            let url = URL(string: (proficlePicURL + ".PNG"))
+            
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                DispatchQueue.main.async {
+                    self.userImage.image = UIImage(data: data!)
+                }
+            }
+        }
     }
     
     func hexStringToUIColor (hex:String) -> UIColor {
