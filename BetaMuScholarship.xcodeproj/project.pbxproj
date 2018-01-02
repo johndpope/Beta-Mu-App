@@ -21,7 +21,9 @@
 		17FC2FA51E25A77600174015 /* UserDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2FA41E25A77600174015 /* UserDetailTableViewController.swift */; };
 		17FC2FA71E25A9A200174015 /* DevicesDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC2FA61E25A9A200174015 /* DevicesDetailTableViewController.swift */; };
 		1933281D1FF4BC9300318A17 /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1933281C1FF4BC9300318A17 /* CropViewController.swift */; };
-		193393011FFAB90B00045D54 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193393001FFAB90B00045D54 /* TimerView.swift */; };
+		193393041FFB347400045D54 /* DDBDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193393021FFB347300045D54 /* DDBDetailViewController.swift */; };
+		193393051FFB347400045D54 /* DDBMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193393031FFB347300045D54 /* DDBMainTableViewController.swift */; };
+		193393071FFB363C00045D54 /* DDBDynamoDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193393061FFB363C00045D54 /* DDBDynamoDBManager.swift */; };
 		19A8A2721FF4A88A00C959BB /* Announcments_Main_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2711FF4A88A00C959BB /* Announcments_Main_ViewController.swift */; };
 		19A8A2791FF4A97300C959BB /* StudyHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2731FF4A97300C959BB /* StudyHoursViewController.swift */; };
 		19A8A27A1FF4A97300C959BB /* ProboRequirementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2741FF4A97300C959BB /* ProboRequirementsViewController.swift */; };
@@ -58,7 +60,9 @@
 		17FC2FA41E25A77600174015 /* UserDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewController.swift; sourceTree = "<group>"; };
 		17FC2FA61E25A9A200174015 /* DevicesDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesDetailTableViewController.swift; sourceTree = "<group>"; };
 		1933281C1FF4BC9300318A17 /* CropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
-		193393001FFAB90B00045D54 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		193393021FFB347300045D54 /* DDBDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDBDetailViewController.swift; path = "../../../../../Downloads/aws-sdk-ios-samples-master/DynamoDBObjectMapper-Sample/Swift/DynamoDBSampleSwift/DDBDetailViewController.swift"; sourceTree = "<group>"; };
+		193393031FFB347300045D54 /* DDBMainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDBMainTableViewController.swift; path = "../../../../../Downloads/aws-sdk-ios-samples-master/DynamoDBObjectMapper-Sample/Swift/DynamoDBSampleSwift/DDBMainTableViewController.swift"; sourceTree = "<group>"; };
+		193393061FFB363C00045D54 /* DDBDynamoDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDBDynamoDBManager.swift; path = "../../../../../Downloads/aws-sdk-ios-samples-master/DynamoDBObjectMapper-Sample/Swift/DynamoDBSampleSwift/DDBDynamoDBManager.swift"; sourceTree = "<group>"; };
 		19A8A2711FF4A88A00C959BB /* Announcments_Main_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Announcments_Main_ViewController.swift; sourceTree = "<group>"; };
 		19A8A2731FF4A97300C959BB /* StudyHoursViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyHoursViewController.swift; sourceTree = "<group>"; };
 		19A8A2741FF4A97300C959BB /* ProboRequirementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProboRequirementsViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,9 @@
 				17FC2FA21E25A5D000174015 /* ConfirmForgotPasswordViewController.swift */,
 				17FC2F9E1E259F3200174015 /* ConfirmSignUpViewController.swift */,
 				1933281C1FF4BC9300318A17 /* CropViewController.swift */,
+				193393021FFB347300045D54 /* DDBDetailViewController.swift */,
+				193393061FFB363C00045D54 /* DDBDynamoDBManager.swift */,
+				193393031FFB347300045D54 /* DDBMainTableViewController.swift */,
 				17FC2FA61E25A9A200174015 /* DevicesDetailTableViewController.swift */,
 				17FC2FA01E25A25900174015 /* ForgotPasswordViewController.swift */,
 				19D39AEE1FF65B7D004774E1 /* HousePositionsTableViewCell.swift */,
@@ -146,7 +153,6 @@
 				17FC2F961E25928900174015 /* MFAViewController.swift */,
 				17FC2F941E2590D800174015 /* MFAViewController.xib */,
 				19BD590B1FF5A24800DDDF94 /* NotificationsViewController.swift */,
-				193393001FFAB90B00045D54 /* TimerView.swift */,
 				19D39AED1FF65B7D004774E1 /* ProboLevelViewController.swift */,
 				19A8A2741FF4A97300C959BB /* ProboRequirementsViewController.swift */,
 				19A8A2781FF4A97300C959BB /* SettingsTableViewCell.swift */,
@@ -357,16 +363,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				19D39AF41FF65B7E004774E1 /* YearSelectionViewController.swift in Sources */,
+				193393071FFB363C00045D54 /* DDBDynamoDBManager.swift in Sources */,
 				19BD590C1FF5A24800DDDF94 /* NotificationsViewController.swift in Sources */,
 				19A8A27C1FF4A97300C959BB /* SideMenuTableViewCell.swift in Sources */,
 				19A8A2721FF4A88A00C959BB /* Announcments_Main_ViewController.swift in Sources */,
+				193393051FFB347400045D54 /* DDBMainTableViewController.swift in Sources */,
 				17FC2FA31E25A5D000174015 /* ConfirmForgotPasswordViewController.swift in Sources */,
 				19A8A2791FF4A97300C959BB /* StudyHoursViewController.swift in Sources */,
 				17FC2FA11E25A25900174015 /* ForgotPasswordViewController.swift in Sources */,
 				17FC2F9D1E259E5D00174015 /* SignUpViewController.swift in Sources */,
 				17FC2F9F1E259F3200174015 /* ConfirmSignUpViewController.swift in Sources */,
 				17FC2F9B1E259E0500174015 /* Constants.swift in Sources */,
-				193393011FFAB90B00045D54 /* TimerView.swift in Sources */,
 				1933281D1FF4BC9300318A17 /* CropViewController.swift in Sources */,
 				19D39AF51FF65B7E004774E1 /* HousePositionsTableViewController.swift in Sources */,
 				19D39AF21FF65B7E004774E1 /* ProboLevelViewController.swift in Sources */,
@@ -377,6 +384,7 @@
 				17FC2F971E25928900174015 /* MFAViewController.swift in Sources */,
 				19A8A27E1FF4A97300C959BB /* SettingsTableViewCell.swift in Sources */,
 				17FC2FA71E25A9A200174015 /* DevicesDetailTableViewController.swift in Sources */,
+				193393041FFB347400045D54 /* DDBDetailViewController.swift in Sources */,
 				19A8A27D1FF4A97300C959BB /* SettingsTableViewController.swift in Sources */,
 				17FC2F801E258FC500174015 /* AppDelegate.swift in Sources */,
 				17FC2FA51E25A77600174015 /* UserDetailTableViewController.swift in Sources */,

@@ -40,6 +40,8 @@ class SideMenuTableViewController: UITableViewController {
     
     let cellIdentifier = "SideMenuTableViewCell"
     
+    var currentBackground: UIColor!
+    
     func setSideMenuSections() {
         sideMenuArr = [
             SideMenuSections(sectionName: "General",
@@ -71,6 +73,8 @@ class SideMenuTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    let statusBarView = UIView()
+    
     override func viewDidAppear(_ animated: Bool) {
         UIApplication.shared.statusBarStyle = .lightContent
         
@@ -79,6 +83,7 @@ class SideMenuTableViewController: UITableViewController {
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         
         statusBar.backgroundColor = UIColor.black
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -89,8 +94,7 @@ class SideMenuTableViewController: UITableViewController {
         
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         
-        statusBar.backgroundColor = UIColor.init(red: 5, green: 60, blue: 104)
-        
+        statusBar.backgroundColor = UIColor.init(displayP3Red: 31/255, green: 58/255, blue: 87/255, alpha: 1.0)
     }
 
     // MARK: - Table view data source

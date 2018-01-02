@@ -73,7 +73,7 @@ class SettingsTableViewController: UITableViewController {
         
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         
-        statusBar.backgroundColor = UIColor.init(red: 5, green: 60, blue: 104)
+        statusBar.backgroundColor = UIColor.init(displayP3Red: 31/255, green: 58/255, blue: 87/255, alpha: 1.0)
     }
 
     override func didReceiveMemoryWarning() {
