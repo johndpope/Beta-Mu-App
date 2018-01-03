@@ -1836,7 +1836,7 @@
         <!--My Study Hours-->
         <scene sceneID="2C3-6h-OT9">
             <objects>
-                <tableViewController id="sDi-Gb-k8f" customClass="DDBMainTableViewController" customModule="DynamoDBSampleSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="sDi-Gb-k8f" customClass="DDBMainTableViewController" customModule="BetaMuScholarship" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lZb-AK-YZ3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1872,7 +1872,15 @@
                             <outlet property="delegate" destination="sDi-Gb-k8f" id="04G-Vi-gh8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Study Hours" id="KVU-N8-QpJ"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="My Study Hours" id="KVU-N8-QpJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="gDV-jN-DfK">
+                            <connections>
+                                <segue destination="ap1-lB-qaM" kind="show" identifier="filterSegue" id="6Jx-Mc-OCs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="aQe-M9-PZE" kind="show" identifier="DDBSeguePushDetailViewController" id="gY2-XT-wIJ">
                             <nil key="action"/>
@@ -1886,8 +1894,7 @@
         <!--Detail View Controller-->
         <scene sceneID="6ca-PH-vZU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P5h-Kw-4sK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="aQe-M9-PZE" customClass="DDBDetailViewController" customModule="DynamoDBSampleSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aQe-M9-PZE" customClass="DDBDetailViewController" customModule="BetaMuScholarship" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aZZ-7o-5vA"/>
                         <viewControllerLayoutGuide type="bottom" id="dCh-hu-jnb"/>
@@ -1987,11 +1994,11 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="HP4-95-ZzL"/>
-                                <exclude reference="jrg-uG-Jkg"/>
-                                <exclude reference="llc-N7-R10"/>
-                                <exclude reference="RBx-1Q-J7U"/>
                                 <exclude reference="Ul9-Cp-vs2"/>
+                                <exclude reference="jrg-uG-Jkg"/>
                                 <exclude reference="CGs-dA-JZe"/>
+                                <exclude reference="RBx-1Q-J7U"/>
+                                <exclude reference="llc-N7-R10"/>
                             </mask>
                         </variation>
                     </view>
@@ -2003,8 +2010,88 @@
                         <outlet property="rangeKeyTextField" destination="ds6-KT-CY5" id="5Y2-QO-MNm"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P5h-Kw-4sK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1890" y="1902"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="Av8-1P-SW0">
+            <objects>
+                <exit id="Wai-yA-Te2" userLabel="Exit" sceneMemberID="exit"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BFp-Gd-aa8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="ap1-lB-qaM" customClass="DDBSearchViewController" customModule="BetaMuScholarship" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hxn-9r-0GP"/>
+                        <viewControllerLayoutGuide type="bottom" id="oj2-Tf-PGk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oCg-Lg-Lg4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="zzV-gn-aBU">
+                                <rect key="frame" x="20" y="263.66666666666669" width="374" height="145"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SqL-wc-bGz">
+                                        <rect key="frame" x="20" y="0.0" width="334" height="73"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Week 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUm-uW-NRR">
+                                                <rect key="frame" x="119.33333333333334" y="0.0" width="95.333333333333343" height="36"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="16" translatesAutoresizingMaskIntoConstraints="NO" id="ezZ-Wv-Iso">
+                                                <rect key="frame" x="120" y="44" width="94" height="29"/>
+                                                <connections>
+                                                    <action selector="weekStepperPressed:" destination="ap1-lB-qaM" eventType="valueChanged" id="c6D-zs-DX3"/>
+                                                </connections>
+                                            </stepper>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXi-Wh-lNg">
+                                        <rect key="frame" x="62.333333333333329" y="105" width="249.33333333333337" height="40"/>
+                                        <color key="backgroundColor" red="0.66666668650000005" green="0.66666668650000005" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="VKR-Tt-gpZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <state key="normal" title="Filter" backgroundImage="redButton">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="searchBtnPressed:" destination="ap1-lB-qaM" eventType="touchUpInside" id="cZh-Tj-ERd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="iXi-Wh-lNg" firstAttribute="width" secondItem="zzV-gn-aBU" secondAttribute="width" multiplier="0.666" id="4O0-oB-444"/>
+                                    <constraint firstItem="SqL-wc-bGz" firstAttribute="leading" secondItem="zzV-gn-aBU" secondAttribute="leading" constant="20" symbolic="YES" id="AiS-Zt-lDc"/>
+                                    <constraint firstAttribute="trailing" secondItem="SqL-wc-bGz" secondAttribute="trailing" constant="20" symbolic="YES" id="wIp-PY-pUV"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zzV-gn-aBU" firstAttribute="centerY" secondItem="oCg-Lg-Lg4" secondAttribute="centerY" id="9m5-NC-jDd"/>
+                            <constraint firstAttribute="trailing" secondItem="zzV-gn-aBU" secondAttribute="trailing" constant="20" symbolic="YES" id="KZq-uT-bHB"/>
+                            <constraint firstItem="zzV-gn-aBU" firstAttribute="leading" secondItem="oCg-Lg-Lg4" secondAttribute="leading" constant="20" symbolic="YES" id="cg3-Wi-p1V"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="weekStepper" destination="ezZ-Wv-Iso" id="TEK-li-iSV"/>
+                        <outlet property="weekText" destination="xUm-uW-NRR" id="y2b-l2-cfk"/>
+                        <segue destination="Wai-yA-Te2" kind="unwind" identifier="unwindToMainSegue" unwindAction="unwindToMainTableViewControllerFromSearchViewController:" id="hRd-PW-BEH"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1176.8115942028987" y="2642.934782608696"/>
         </scene>
     </scenes>
     <resources>

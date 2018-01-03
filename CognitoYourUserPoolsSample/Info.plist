@@ -11,13 +11,13 @@
 				<key>Default</key>
 				<dict>
 					<key>PoolId</key>
-					<string>us-east-1_TqwJbw9rG</string>
+					<string>us-east-1:bb023064-cbc1-40da-8cfc-84cc04d5485f</string>
 					<key>Region</key>
 					<string>us-east-1</string>
 				</dict>
 			</dict>
 		</dict>
-		<key>S3</key>
+		<key>DynamoDB</key>
 		<dict>
 			<key>Default</key>
 			<dict>
@@ -25,7 +25,7 @@
 				<string>us-east-1</string>
 			</dict>
 		</dict>
-		<key>S3TransferManager</key>
+		<key>DynamoDBObjectMapper</key>
 		<dict>
 			<key>Default</key>
 			<dict>
@@ -77,11 +77,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>"Allow Beta Theta Pi to use location to track study hours"</string>
+	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>"Allow Beta Theta Pi to use location to track study hours"</string>
+	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>"Allow Beta Theta Pi to use location to track study hours"</string>
+	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow access to Photo Library</string>
 	<key>UIAppFonts</key>

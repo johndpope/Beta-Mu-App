@@ -196,7 +196,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
                 studying = true
                 startStopStudyingButton.setTitle("Stop Studying", for: .normal)
                 if (timerCounter == nil){
-                    timerCounter = Timer.scheduledTimer(timeInterval: 0.01, target:self, selector: #selector(StudyHoursViewController.updateCounter), userInfo: nil, repeats: true)
+                    timerCounter = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(StudyHoursViewController.updateCounter), userInfo: nil, repeats: true)
                 }
             } else {
                 let alert = UIAlertController(title: "Parameters Not Set", message: "Both location and class must be set for study hours to count", preferredStyle: .alert)
@@ -326,11 +326,11 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     class DDBTableRow :AWSDynamoDBObjectModel ,AWSDynamoDBModeling  {
         
         var Date_And_Time:String?
-        var Hours:NSNumber?
+        var NameOfUser:String?
         
         //set the default values of scores, wins and losses to 0
         var Class:String? = ""
-        var Name:String? = ""
+        var Hours:NSNumber? = 0
         var Location:String? = ""
         var Week:NSNumber? = 0
         var Probo_Level:String? = ""
@@ -349,7 +349,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         }
         
         class func rangeKeyAttribute() -> String {
-            return "Hours"
+            return "NameOfUser"
         }
         
         class func ignoreAttributes() -> [String] {
@@ -447,7 +447,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         let tableRow = DDBTableRow()
         tableRow?.Date_And_Time = "\(dateFormatterGet.string(from: date))"
         tableRow?.Hours = (Double(days * 24 + hours) + Double(Int(minutes)/15)/4) as NSNumber?
-        tableRow?.Name = firstName! + " " + lastName! as String?
+        tableRow?.NameOfUser = firstName! + " " + lastName! as String?
         tableRow?.Probo_Level = proboLevel! as String?
         tableRow?.Class = classDescription as String?
         tableRow?.Location = locationName

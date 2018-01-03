@@ -24,6 +24,7 @@
 		193393041FFB347400045D54 /* DDBDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193393021FFB347300045D54 /* DDBDetailViewController.swift */; };
 		193393051FFB347400045D54 /* DDBMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193393031FFB347300045D54 /* DDBMainTableViewController.swift */; };
 		193393071FFB363C00045D54 /* DDBDynamoDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193393061FFB363C00045D54 /* DDBDynamoDBManager.swift */; };
+		1936B58F1FFC838900EB6756 /* DDBSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936B58E1FFC838800EB6756 /* DDBSearchViewController.swift */; };
 		19A8A2721FF4A88A00C959BB /* Announcments_Main_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2711FF4A88A00C959BB /* Announcments_Main_ViewController.swift */; };
 		19A8A2791FF4A97300C959BB /* StudyHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2731FF4A97300C959BB /* StudyHoursViewController.swift */; };
 		19A8A27A1FF4A97300C959BB /* ProboRequirementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2741FF4A97300C959BB /* ProboRequirementsViewController.swift */; };
@@ -62,7 +63,8 @@
 		1933281C1FF4BC9300318A17 /* CropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
 		193393021FFB347300045D54 /* DDBDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDBDetailViewController.swift; path = "../../../../../Downloads/aws-sdk-ios-samples-master/DynamoDBObjectMapper-Sample/Swift/DynamoDBSampleSwift/DDBDetailViewController.swift"; sourceTree = "<group>"; };
 		193393031FFB347300045D54 /* DDBMainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDBMainTableViewController.swift; path = "../../../../../Downloads/aws-sdk-ios-samples-master/DynamoDBObjectMapper-Sample/Swift/DynamoDBSampleSwift/DDBMainTableViewController.swift"; sourceTree = "<group>"; };
-		193393061FFB363C00045D54 /* DDBDynamoDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDBDynamoDBManager.swift; path = "../../../../../Downloads/aws-sdk-ios-samples-master/DynamoDBObjectMapper-Sample/Swift/DynamoDBSampleSwift/DDBDynamoDBManager.swift"; sourceTree = "<group>"; };
+		193393061FFB363C00045D54 /* DDBDynamoDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDBDynamoDBManager.swift; path = "../../../../../Downloads/aws-sdk-ios-samples-master/DynamoDBObjectMapper-Sample/Swift/DynamoDBSampleSwift/DDBDynamoDBManager.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		1936B58E1FFC838800EB6756 /* DDBSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDBSearchViewController.swift; path = "../../../../../Downloads/aws-sdk-ios-samples-master/DynamoDBObjectMapper-Sample/Swift/DynamoDBSampleSwift/DDBSearchViewController.swift"; sourceTree = "<group>"; };
 		19A8A2711FF4A88A00C959BB /* Announcments_Main_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Announcments_Main_ViewController.swift; sourceTree = "<group>"; };
 		19A8A2731FF4A97300C959BB /* StudyHoursViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyHoursViewController.swift; sourceTree = "<group>"; };
 		19A8A2741FF4A97300C959BB /* ProboRequirementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProboRequirementsViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				193393021FFB347300045D54 /* DDBDetailViewController.swift */,
 				193393061FFB363C00045D54 /* DDBDynamoDBManager.swift */,
 				193393031FFB347300045D54 /* DDBMainTableViewController.swift */,
+				1936B58E1FFC838800EB6756 /* DDBSearchViewController.swift */,
 				17FC2FA61E25A9A200174015 /* DevicesDetailTableViewController.swift */,
 				17FC2FA01E25A25900174015 /* ForgotPasswordViewController.swift */,
 				19D39AEE1FF65B7D004774E1 /* HousePositionsTableViewCell.swift */,
@@ -389,6 +392,7 @@
 				17FC2F801E258FC500174015 /* AppDelegate.swift in Sources */,
 				17FC2FA51E25A77600174015 /* UserDetailTableViewController.swift in Sources */,
 				19A8A27B1FF4A97300C959BB /* SideMenuTableViewController.swift in Sources */,
+				1936B58F1FFC838900EB6756 /* DDBSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
