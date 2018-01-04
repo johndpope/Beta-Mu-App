@@ -25,6 +25,7 @@
 		193393051FFB347400045D54 /* DDBMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193393031FFB347300045D54 /* DDBMainTableViewController.swift */; };
 		193393071FFB363C00045D54 /* DDBDynamoDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193393061FFB363C00045D54 /* DDBDynamoDBManager.swift */; };
 		1936B58F1FFC838900EB6756 /* DDBSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936B58E1FFC838800EB6756 /* DDBSearchViewController.swift */; };
+		1940D9321FFDFDFD00330FE8 /* timerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1940D9311FFDFDFD00330FE8 /* timerClass.swift */; };
 		19A8A2721FF4A88A00C959BB /* Announcments_Main_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2711FF4A88A00C959BB /* Announcments_Main_ViewController.swift */; };
 		19A8A2791FF4A97300C959BB /* StudyHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2731FF4A97300C959BB /* StudyHoursViewController.swift */; };
 		19A8A27A1FF4A97300C959BB /* ProboRequirementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8A2741FF4A97300C959BB /* ProboRequirementsViewController.swift */; };
@@ -65,6 +66,7 @@
 		193393031FFB347300045D54 /* DDBMainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDBMainTableViewController.swift; path = "../../../../../Downloads/aws-sdk-ios-samples-master/DynamoDBObjectMapper-Sample/Swift/DynamoDBSampleSwift/DDBMainTableViewController.swift"; sourceTree = "<group>"; };
 		193393061FFB363C00045D54 /* DDBDynamoDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDBDynamoDBManager.swift; path = "../../../../../Downloads/aws-sdk-ios-samples-master/DynamoDBObjectMapper-Sample/Swift/DynamoDBSampleSwift/DDBDynamoDBManager.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1936B58E1FFC838800EB6756 /* DDBSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DDBSearchViewController.swift; path = "../../../../../Downloads/aws-sdk-ios-samples-master/DynamoDBObjectMapper-Sample/Swift/DynamoDBSampleSwift/DDBSearchViewController.swift"; sourceTree = "<group>"; };
+		1940D9311FFDFDFD00330FE8 /* timerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timerClass.swift; sourceTree = "<group>"; };
 		19A8A2711FF4A88A00C959BB /* Announcments_Main_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Announcments_Main_ViewController.swift; sourceTree = "<group>"; };
 		19A8A2731FF4A97300C959BB /* StudyHoursViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyHoursViewController.swift; sourceTree = "<group>"; };
 		19A8A2741FF4A97300C959BB /* ProboRequirementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProboRequirementsViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		17FC2F7E1E258FC500174015 /* Beta Mu Scholarship */ = {
 			isa = PBXGroup;
 			children = (
+				1940D9301FFDFDEC00330FE8 /* Classes */,
 				198D9C021FF42E3F008BFA35 /* Configs */,
 				198D9C011FF42E15008BFA35 /* Views */,
 				17FC2F7F1E258FC500174015 /* AppDelegate.swift */,
@@ -135,6 +138,14 @@
 			);
 			name = "Beta Mu Scholarship";
 			path = CognitoYourUserPoolsSample;
+			sourceTree = "<group>";
+		};
+		1940D9301FFDFDEC00330FE8 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1940D9311FFDFDFD00330FE8 /* timerClass.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		198D9C011FF42E15008BFA35 /* Views */ = {
@@ -235,6 +246,9 @@
 						DevelopmentTeam = 3AT7FQ5S2Z;
 						LastSwiftMigration = 0920;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -387,6 +401,7 @@
 				17FC2F971E25928900174015 /* MFAViewController.swift in Sources */,
 				19A8A27E1FF4A97300C959BB /* SettingsTableViewCell.swift in Sources */,
 				17FC2FA71E25A9A200174015 /* DevicesDetailTableViewController.swift in Sources */,
+				1940D9321FFDFDFD00330FE8 /* timerClass.swift in Sources */,
 				193393041FFB347400045D54 /* DDBDetailViewController.swift in Sources */,
 				19A8A27D1FF4A97300C959BB /* SettingsTableViewController.swift in Sources */,
 				17FC2F801E258FC500174015 /* AppDelegate.swift in Sources */,

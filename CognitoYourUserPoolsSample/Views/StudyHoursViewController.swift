@@ -33,7 +33,8 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     var classDescription: String!
     var studying:Bool = false
     var timerCounter: Timer?
-    
+    var startTime:[Int] = []
+
     var locationName:String!
     
     var lastName: String!
@@ -193,6 +194,13 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     @IBAction func startStudying(_ sender: Any) {
         if(!studying){
             if(locationSet && classSet) {
+                startTime = [
+                Calendar.current.component(.second, from: Date()),
+                Calendar.current.component(.minute, from: Date()),
+                Calendar.current.component(.hour, from: Date()),
+                Calendar.current.component(.day, from: Date())
+                ]
+                timer.text! = "00:00:00:00"
                 studying = true
                 startStopStudyingButton.setTitle("Stop Studying", for: .normal)
                 if (timerCounter == nil){
@@ -306,12 +314,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     
     
     @objc func updateCounter() {
-        timer.text! = String(format: "%02d", days)
-            + ":" + String(format: "%02d", hours)
-            + ":" + String(format: "%02d", minutes)
-            + ":" + String(format: "%02d", seconds)
-        
-        seconds = (seconds + 1) % 60
+        /* seconds = (seconds + 1) % 60
         if(seconds == 0){
             minutes = (minutes + 1) % 60
             if(minutes == 0){
@@ -320,7 +323,33 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
                     days += 1
                 }
             }
-        }
+        } */
+        
+        var currentTime = [
+            Calendar.current.component(.second, from: Date()),
+            Calendar.current.component(.minute, from: Date()),
+            Calendar.current.component(.hour, from: Date()),
+            Calendar.current.component(.day, from: Date())
+        ]
+        
+        print("\(currentTime[3]):\(currentTime[2]):\(currentTime[1]):\(currentTime[0])")
+        
+        let year = Calendar.current.component(.day, from: Date())
+        let isLeapYear:Bool = ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0))
+        
+        seconds = currentTime[0] - startTime[0]
+        if(seconds < 0) { seconds += 60; currentTime[1] -= 1 }
+        minutes = currentTime[1] - startTime[1]
+        if(minutes < 0) { minutes += 60; currentTime[2] -= 1 }
+        hours = currentTime[2] - startTime[2]
+        if(hours < 0) { hours += 24; currentTime[3] -= 1 }
+        days = currentTime[3] - startTime[3]
+        if(days < 0) { days += 366 + (isLeapYear ? 1 : 0) }
+        
+        timer.text! = String(format: "%02d", days)
+            + ":" + String(format: "%02d", hours)
+            + ":" + String(format: "%02d", minutes)
+            + ":" + String(format: "%02d", seconds)
     }
     
     class DDBTableRow :AWSDynamoDBObjectModel ,AWSDynamoDBModeling  {

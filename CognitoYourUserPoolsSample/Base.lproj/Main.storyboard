@@ -1287,7 +1287,7 @@
             </objects>
             <point key="canvasLocation" x="405.79710144927537" y="2642.934782608696"/>
         </scene>
-        <!--Requiremnets-->
+        <!--Requirements-->
         <scene sceneID="g2M-QI-zcR">
             <objects>
                 <viewController id="Zg3-KZ-klF" customClass="ProboRequirementsViewController" customModule="BetaMuScholarship" customModuleProvider="target" sceneMemberID="viewController">
@@ -1313,7 +1313,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eyo-gn-Kov"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Requiremnets" id="zTy-Nn-CAo"/>
+                    <navigationItem key="navigationItem" title="Requirements" id="zTy-Nn-CAo"/>
                     <connections>
                         <outlet property="webKitView" destination="UWT-6W-b4C" id="dgg-8Z-gKu"/>
                     </connections>
@@ -2017,8 +2017,6 @@
         <!--Search View Controller-->
         <scene sceneID="Av8-1P-SW0">
             <objects>
-                <exit id="Wai-yA-Te2" userLabel="Exit" sceneMemberID="exit"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BFp-Gd-aa8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ap1-lB-qaM" customClass="DDBSearchViewController" customModule="BetaMuScholarship" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hxn-9r-0GP"/>
@@ -2090,6 +2088,8 @@
                         <segue destination="Wai-yA-Te2" kind="unwind" identifier="unwindToMainSegue" unwindAction="unwindToMainTableViewControllerFromSearchViewController:" id="hRd-PW-BEH"/>
                     </connections>
                 </viewController>
+                <exit id="Wai-yA-Te2" userLabel="Exit" sceneMemberID="exit"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BFp-Gd-aa8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1176.8115942028987" y="2642.934782608696"/>
         </scene>

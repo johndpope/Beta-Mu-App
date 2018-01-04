@@ -60,7 +60,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>4</string>
 	<key>FacebookAppID</key>
 	<string>1933945360188561</string>
 	<key>FacebookDisplayName</key>
@@ -80,6 +80,8 @@
 	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -87,6 +89,10 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Gotham Bold Regular.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

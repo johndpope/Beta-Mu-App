@@ -21,14 +21,14 @@ class SettingsTableViewController: UITableViewController {
 
     func setSettingsSections() {
         settingsArray = [
-            SettingsSections(sectionName: "Privacy",
+            /*SettingsSections(sectionName: "Privacy",
                              sectionSettings: [ "Allow for Touch ID", "Allow for Notifications"]),
             SettingsSections(sectionName: "Notifications",
                              sectionSettings: ["Dishes",
                                                "Sober Duty",
                                                "Functions",
                                                "Philanthropy Events",
-                                               "Community Service"])
+                                               "Community Service"])*/
         ]
     }
     

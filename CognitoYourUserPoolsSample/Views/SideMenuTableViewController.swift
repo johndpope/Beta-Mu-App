@@ -183,11 +183,11 @@ class SideMenuTableViewController: UITableViewController {
         }
         if(indexPath.row == 1){
             self.performSegue(withIdentifier: "notificationSegue", sender: self)
-        } */
+        } 
         
         if(indexPath.row == 6){
             self.performSegue(withIdentifier: "studyHoursSegue", sender: self)
-        }
+        } */
         // self.performSegue(withIdentifier: "yourIdentifier", sender: self)
     }
     
