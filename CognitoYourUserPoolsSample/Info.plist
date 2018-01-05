@@ -60,13 +60,15 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>5</string>
 	<key>FacebookAppID</key>
 	<string>1933945360188561</string>
 	<key>FacebookDisplayName</key>
 	<string>Beta Mu Scholarship</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -77,13 +79,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
+	<string>"Allow Beta Theta Pi to use location to track study hours"</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
+	<string>"Allow Beta Theta Pi to use location to track study hours"</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;Allow Beta Theta Pi to use location to track study hours&quot;</string>
+	<string>"Allow Beta Theta Pi to use location to track study hours"</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow access to Photo Library</string>
 	<key>UIAppFonts</key>

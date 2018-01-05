@@ -1205,7 +1205,11 @@
                         <viewLayoutGuide key="safeArea" id="2n4-ep-CW9"/>
                     </view>
                     <navigationItem key="navigationItem" title="Study Hours" id="IQq-cg-qz5">
-                        <barButtonItem key="rightBarButtonItem" image="settingsIcon" id="PpI-D4-jAx"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out" id="qaa-lC-CAL">
+                            <connections>
+                                <action selector="signOut:" destination="kDK-67-suG" id="evR-HO-4bc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="imgHeightConstraint" destination="6bd-uY-fLq" id="7Wj-e2-oX5"/>
@@ -1213,7 +1217,6 @@
                         <outlet property="imgWidthConstraint" destination="6is-q8-bCO" id="aMe-Vh-7OC"/>
                         <outlet property="selectClassButton" destination="jbr-L6-4m1" id="a8D-eJ-q8P"/>
                         <outlet property="setLocationButton" destination="LJS-P6-cqL" id="4xT-wg-pmP"/>
-                        <outlet property="settings" destination="PpI-D4-jAx" id="bFe-4S-y1Z"/>
                         <outlet property="startStopStudyingButton" destination="fDQ-bK-NlA" id="IMb-O8-ib2"/>
                         <outlet property="timer" destination="Gos-ro-tnT" id="q8h-KY-Gte"/>
                     </connections>
@@ -1343,7 +1346,6 @@
                 <viewController title="Title" id="Y6w-a6-1tW" userLabel="Reveal View Controller" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="aeW-W3-2Ga"/>
                     <connections>
-                        <segue destination="7L5-CS-JBn" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="5b5-kv-kBO"/>
                         <segue destination="62A-ov-im4" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="ajC-Xk-gid"/>
                     </connections>
                 </viewController>

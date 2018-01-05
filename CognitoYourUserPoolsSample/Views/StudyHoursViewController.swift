@@ -115,11 +115,19 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
             self.revealViewController().rearViewRevealWidth = self.view.frame.width * 0.7 < 290 ? self.view.frame.width * 0.7 : 290
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())*/
             
-            settings.target = self.revealViewController()
+            /* settings.target = self.revealViewController()
             settings.action = #selector(SWRevealViewController.rightRevealToggle(_:))
             self.revealViewController().rightViewRevealWidth = self.view.frame.width * 0.7 < 290 ? self.view.frame.width * 0.7 : 290
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer()) */
         }
+    }
+    
+    @IBAction func signOut(_ sender: UIBarButtonItem) {
+        self.user?.signOut()
+        self.title = nil
+        self.response = nil
+        //self.tableView.reloadData()
+        self.refresh()
     }
     
     @IBAction func pickPlace(_ sender: Any) {
