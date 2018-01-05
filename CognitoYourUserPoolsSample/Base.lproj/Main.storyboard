@@ -1205,7 +1205,6 @@
                         <viewLayoutGuide key="safeArea" id="2n4-ep-CW9"/>
                     </view>
                     <navigationItem key="navigationItem" title="Study Hours" id="IQq-cg-qz5">
-                        <barButtonItem key="leftBarButtonItem" image="hamburgerButton" id="3Sq-6x-gem"/>
                         <barButtonItem key="rightBarButtonItem" image="settingsIcon" id="PpI-D4-jAx"/>
                     </navigationItem>
                     <connections>
@@ -1215,7 +1214,6 @@
                         <outlet property="selectClassButton" destination="jbr-L6-4m1" id="a8D-eJ-q8P"/>
                         <outlet property="setLocationButton" destination="LJS-P6-cqL" id="4xT-wg-pmP"/>
                         <outlet property="settings" destination="PpI-D4-jAx" id="bFe-4S-y1Z"/>
-                        <outlet property="sideMenu" destination="3Sq-6x-gem" id="hQ8-Or-VkI"/>
                         <outlet property="startStopStudyingButton" destination="fDQ-bK-NlA" id="IMb-O8-ib2"/>
                         <outlet property="timer" destination="Gos-ro-tnT" id="q8h-KY-Gte"/>
                     </connections>
@@ -1345,7 +1343,6 @@
                 <viewController title="Title" id="Y6w-a6-1tW" userLabel="Reveal View Controller" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="aeW-W3-2Ga"/>
                     <connections>
-                        <segue destination="1SQ-uj-Ils" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="3Uy-ye-wxa"/>
                         <segue destination="7L5-CS-JBn" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="5b5-kv-kBO"/>
                         <segue destination="62A-ov-im4" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="ajC-Xk-gid"/>
                     </connections>

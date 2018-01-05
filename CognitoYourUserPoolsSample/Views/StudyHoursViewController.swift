@@ -100,6 +100,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         startTime = defaults.object(forKey: "startTime") as? [Int] ?? [Int]()
         studying = defaults.object(forKey: "studying") as? Bool ?? false
         locationName = defaults.object(forKey: "locationName") as? String ?? String()
+        classDescription = defaults.object(forKey: "className") as? String ?? String()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -109,10 +110,10 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     
     func setupNavBarButtons() {
         if self.revealViewController() != nil {
-            sideMenu.target = self.revealViewController()
+            /*sideMenu.target = self.revealViewController()
             sideMenu.action = #selector(SWRevealViewController.revealToggle(_:))
             self.revealViewController().rearViewRevealWidth = self.view.frame.width * 0.7 < 290 ? self.view.frame.width * 0.7 : 290
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())*/
             
             settings.target = self.revealViewController()
             settings.action = #selector(SWRevealViewController.rightRevealToggle(_:))
@@ -191,6 +192,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
             print("Text field: \(String(describing: textField!.text))")
             if(textField!.text != ""){
                 self.classDescription = textField!.text
+                self.defaults.set(self.classDescription, forKey: "className")
                 self.classSet = true
             }
         }))
@@ -456,6 +458,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         
         submitData()
         
+        defaults.set(String(), forKey: "className")
         timer.text! = ""
         seconds = 0
         minutes = 0
