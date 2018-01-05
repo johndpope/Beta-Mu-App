@@ -26,12 +26,13 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     let locationManager = CLLocationManager()
     let bucketName = "beta-mu-signature-bucket"
     
-    var initalLocation:CLLocationCoordinate2D!
+    var initialLocation:CLLocationCoordinate2D!
     
     var locationSet: Bool!
     var classSet:Bool!
     var classDescription: String!
     var studying:Bool = false
+    //var timerHasStarted:Bool = false
     var timerCounter: Timer?
     var startTime:[Int] = []
 
@@ -56,10 +57,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     var user: AWSCognitoIdentityUser?
     var pool: AWSCognitoIdentityUserPool?
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        //print("locations = \(locValue.latitude) \(locValue.longitude)")
-    }
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         locationManager.requestAlwaysAuthorization()
@@ -81,12 +79,32 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         
         super.viewDidLoad()
         
+        print("load defaults")
+        loadDefaults()
+        
+        print("check studying")
+        if(studying) {
+            startStopStudyingButton.setTitle("Stop Studying", for: .normal)
+            timerCounter = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(StudyHoursViewController.updateCounter), userInfo: nil, repeats: true)
+        }
+        
         setupNavBarButtons()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func loadDefaults() {
+        startTime = defaults.object(forKey: "startTime") as? [Int] ?? [Int]()
+        studying = defaults.object(forKey: "studying") as? Bool ?? false
+        locationName = defaults.object(forKey: "locationName") as? String ?? String()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        //print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
     func setupNavBarButtons() {
@@ -111,7 +129,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         }
         let locValue:CLLocationCoordinate2D = locationManager.location!.coordinate
         print(locValue)
-        initalLocation = locValue
+        initialLocation = locValue
         
         let center = CLLocationCoordinate2D(latitude: locValue.latitude, longitude: locValue.longitude)
         let northEast = CLLocationCoordinate2D(latitude: center.latitude + 0.001, longitude: center.longitude + 0.001)
@@ -136,6 +154,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
                 print("----------------------")
                 print(place.name)
                 self.locationName = place.name
+                self.defaults.set(self.locationName, forKey: "locationName")
                 print(place.coordinate)
                 print("----------------------")
                 print(self.compareCoordinates(place.coordinate, locValue))
@@ -200,8 +219,10 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
                 Calendar.current.component(.hour, from: Date()),
                 Calendar.current.component(.day, from: Date())
                 ]
+                defaults.set(startTime, forKey: "startTime")
                 timer.text! = "00:00:00:00"
                 studying = true
+                defaults.set(studying, forKey: "studying")
                 startStopStudyingButton.setTitle("Stop Studying", for: .normal)
                 if (timerCounter == nil){
                     timerCounter = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(StudyHoursViewController.updateCounter), userInfo: nil, repeats: true)
@@ -234,6 +255,8 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         locationSet = false
         classSet = false
         studying = !studying
+        defaults.set(studying, forKey: "studying")
+        defaults.set([Int](), forKey: "startTime")
         timer.text! = ""
         seconds = 0
         minutes = 0
@@ -250,15 +273,17 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         locationSet = false
         classSet = false
         studying = !studying
+        defaults.set(studying, forKey: "studying")
+        defaults.set([Int](), forKey: "startTime")
         
         // logging
         
         let locValue:CLLocationCoordinate2D = locationManager.location!.coordinate
-        if(!self.compareCoordinates(self.initalLocation, locValue)){
+        /* if(!self.compareCoordinates(self.initialLocation, locValue)){
             let alert = UIAlertController(title: "Invalid Location!", message: "You've moved too far away from your initial study location. These study hours are invalid.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in  }))
             self.present(alert, animated: true, completion: nil)
-        } else {
+        } else { */
             
             for index in 1..<(self.response?.userAttributes?.count)! {
                 print("index: \(index)")
@@ -286,7 +311,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
             signatureVC.title = firstName! + " " + lastName!
             let nav = UINavigationController(rootViewController: signatureVC)
             present(nav, animated: true, completion: nil)
-        }
+        //}
     }
     
     func insertTableRow(_ tableRow: DDBTableRow) {

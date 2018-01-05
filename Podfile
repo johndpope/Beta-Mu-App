@@ -10,13 +10,9 @@ target 'BetaMuScholarship' do
     pod 'AWSS3'
     pod 'IQKeyboardManagerSwift'
     pod 'SWRevealViewController'
-    pod 'GoogleMaps'
-    pod 'GooglePlaces'
     pod 'GooglePlacePicker'
     pod 'TOCropViewController'
     pod 'CropViewController'
     pod 'EPSignature'
-    pod 'Popover'
-    pod 'PureLayout'
 end
 

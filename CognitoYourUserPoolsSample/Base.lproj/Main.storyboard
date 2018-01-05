@@ -187,9 +187,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.01626873203" green="0.50152528289999998" blue="0.95929986239999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="7ET-Ml-o9d" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Hlp-SG-PTf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7ET-Ml-o9d" secondAttribute="bottom" constant="20" id="TOo-PX-vLW"/>
                             <constraint firstAttribute="trailing" secondItem="7ET-Ml-o9d" secondAttribute="trailing" constant="20" symbolic="YES" id="Ypj-vd-55v"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7ET-Ml-o9d" secondAttribute="bottom" constant="20" id="oWM-ag-CVR"/>
+                            <constraint firstItem="7ET-Ml-o9d" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="dx1-ET-hnF"/>
                             <constraint firstItem="7ET-Ml-o9d" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="ue5-wZ-LYg"/>
                         </constraints>
                     </view>
