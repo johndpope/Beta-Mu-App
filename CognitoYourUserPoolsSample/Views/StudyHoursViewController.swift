@@ -32,9 +32,11 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     var classSet:Bool!
     var classDescription: String!
     var studying:Bool = false
-    //var timerHasStarted:Bool = false
+    var paused:Bool = false
     var timerCounter: Timer?
     var startTime:[Int] = []
+    var pauseTime:[Int] = []
+    var diffTime:[Int] = []
 
     var locationName:String!
     
@@ -60,7 +62,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         
         // S3 Intializations
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.USEast1, identityPoolId:"us-east-1:bb023064-cbc1-40da-8cfc-84cc04d5485f")
@@ -84,8 +86,12 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         
         print("check studying")
         if(studying) {
-            startStopStudyingButton.setTitle("Stop Studying", for: .normal)
-            timerCounter = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(StudyHoursViewController.updateCounter), userInfo: nil, repeats: true)
+            if(paused) {
+                startStopStudyingButton.setTitle("Resume Studying", for: .normal)
+            } else {
+                startStopStudyingButton.setTitle("Stop Studying", for: .normal)
+                timerCounter = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(StudyHoursViewController.updateCounter), userInfo: nil, repeats: true)
+            }
         }
         
         setupNavBarButtons()
@@ -99,8 +105,12 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
     func loadDefaults() {
         startTime = defaults.object(forKey: "startTime") as? [Int] ?? [Int]()
         studying = defaults.object(forKey: "studying") as? Bool ?? false
+        paused = defaults.object(forKey: "paused") as? Bool ?? false
         locationName = defaults.object(forKey: "locationName") as? String ?? String()
         classDescription = defaults.object(forKey: "className") as? String ?? String()
+        diffTime = defaults.object(forKey: "diffTime") as? [Int] ?? [Int]()
+        pauseTime = defaults.object(forKey: "pauseTime") as? [Int] ?? [Int]()
+        timer.text! = defaults.object(forKey: "timerText") as? String ?? String()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -205,6 +215,8 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
             }
         }))
         
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
         
@@ -231,6 +243,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
                 ]
                 defaults.set(startTime, forKey: "startTime")
                 timer.text! = "00:00:00:00"
+                defaults.set(timer.text!, forKey: "timerText")
                 studying = true
                 defaults.set(studying, forKey: "studying")
                 startStopStudyingButton.setTitle("Stop Studying", for: .normal)
@@ -244,17 +257,88 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
             }
         }
         else if(studying){
-            if(timerCounter != nil){
-                timerCounter!.invalidate()
-                timerCounter = nil
+            if (paused) {
+                paused = !paused
+                defaults.set(paused, forKey: "paused")
+                startStopStudyingButton.setTitle("Stop Studying", for: .normal)
+                pauseTime = [
+                    Calendar.current.component(.second, from: Date()),
+                    Calendar.current.component(.minute, from: Date()),
+                    Calendar.current.component(.hour, from: Date()),
+                    Calendar.current.component(.day, from: Date())
+                ]
+                for i in 0...3
+                {
+                    startTime[i] = pauseTime[i] - diffTime[i]
+                }
+                defaults.set(startTime, forKey: "startTime")
+                defaults.set(pauseTime, forKey: "pauseTime")
+                if (timerCounter == nil){
+                    timerCounter = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(StudyHoursViewController.updateCounter), userInfo: nil, repeats: true)
+                }
+            } else {
+                if(timerCounter != nil){
+                    timerCounter!.invalidate()
+                    timerCounter = nil
+                }
+                pauseTime = [
+                    Calendar.current.component(.second, from: Date()),
+                    Calendar.current.component(.minute, from: Date()),
+                    Calendar.current.component(.hour, from: Date()),
+                    Calendar.current.component(.day, from: Date())
+                ]
+                diffTime = [ 0, 0, 0, 0 ]
+                for i in 0...3
+                {
+                    diffTime[i] = pauseTime[i] - startTime[i]
+                }
+                defaults.set(pauseTime, forKey: "pauseTime")
+                defaults.set(diffTime, forKey: "diffTime")
+                
+                paused = !paused
+                defaults.set(paused, forKey: "paused")
+                
+                let alert = UIAlertController(title: "Finish Studying", message: "Press submit to log hours. Press cancel to discard hours.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Pause", style: .default, handler: pauseTimer))
+                alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: logHours))
+                alert.addAction(UIAlertAction(title: "Discard", style: .default, handler: discard))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: continueTimer))
+                self.present(alert, animated: true, completion: nil)
             }
-            let alert = UIAlertController(title: "Finish Studying", message: "Press submit to log hours. Press cancel to discard hours.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: logHours))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: resetValues))
-            self.present(alert, animated: true, completion: nil)
         }
     }
     
+    func pauseTimer(_ alert: UIAlertAction) {
+        startStopStudyingButton.setTitle("Resume Studying", for: .normal)
+    }
+    
+    func discard(_ alert: UIAlertAction) {
+        let alert = UIAlertController(title: "Are you sure?", message: "Press Yes to discard hours. Press NO to continue studying.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: resetValues))
+        alert.addAction(UIAlertAction(title: "NO", style: .cancel, handler: continueTimer))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func continueTimer(_ alert: UIAlertAction) {
+        paused = !paused
+        defaults.set(paused, forKey: "paused")
+        startStopStudyingButton.setTitle("Stop Studying", for: .normal)
+        pauseTime = [
+            Calendar.current.component(.second, from: Date()),
+            Calendar.current.component(.minute, from: Date()),
+            Calendar.current.component(.hour, from: Date()),
+            Calendar.current.component(.day, from: Date())
+        ]
+        for i in 0...3
+        {
+            startTime[i] = pauseTime[i] - diffTime[i]
+        }
+        defaults.set(startTime, forKey: "startTime")
+        defaults.set(pauseTime, forKey: "pauseTime")
+        if (timerCounter == nil){
+            timerCounter = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(StudyHoursViewController.updateCounter), userInfo: nil, repeats: true)
+        }
+    }
     
     func resetValues(_ alert: UIAlertAction) {
         if(timerCounter != nil){
@@ -265,9 +349,14 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         locationSet = false
         classSet = false
         studying = !studying
+        paused = !paused
         defaults.set(studying, forKey: "studying")
+        defaults.set(paused, forKey: "paused")
         defaults.set([Int](), forKey: "startTime")
+        defaults.set([Int](), forKey: "pauseTime")
+        defaults.set([Int](), forKey: "diffTime")
         timer.text! = ""
+        defaults.set(timer.text!, forKey: "timerText")
         seconds = 0
         minutes = 0
         hours = 0
@@ -317,7 +406,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
             }
             
             let signatureVC = EPSignatureViewController(signatureDelegate: self, showsDate: true, showsSaveSignatureOption: false)
-            signatureVC.subtitleText = "I affirm that \(firstName! + " " + lastName!) has studied \(Double(days * 24 + hours) + Double(Int(minutes)/15)/4) hours at \(locationName!)"
+            signatureVC.subtitleText = "I affirm that \(firstName! + " " + lastName!) has studied \(Double(days * 24 + hours) + Double(Int(minutes)/3)/20) hours at \(locationName!)"
             signatureVC.title = firstName! + " " + lastName!
             let nav = UINavigationController(rootViewController: signatureVC)
             present(nav, animated: true, completion: nil)
@@ -385,6 +474,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
             + ":" + String(format: "%02d", hours)
             + ":" + String(format: "%02d", minutes)
             + ":" + String(format: "%02d", seconds)
+        defaults.set(timer.text!, forKey: "timerText")
     }
     
     class DDBTableRow :AWSDynamoDBObjectModel ,AWSDynamoDBModeling  {
@@ -468,6 +558,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         
         defaults.set(String(), forKey: "className")
         timer.text! = ""
+        defaults.set(timer.text!, forKey: "timerText")
         seconds = 0
         minutes = 0
         hours = 0
@@ -511,7 +602,7 @@ class StudyHoursViewController: UIViewController, CLLocationManagerDelegate, EPS
         
         let tableRow = DDBTableRow()
         tableRow?.Date_And_Time = "\(dateFormatterGet.string(from: date))"
-        tableRow?.Hours = (Double(days * 24 + hours) + Double(Int(minutes)/15)/4) as NSNumber?
+        tableRow?.Hours = (Double(days * 24 + hours) + Double(Int(minutes)/3)/20) as NSNumber?
         tableRow?.NameOfUser = firstName! + " " + lastName! as String?
         tableRow?.Probo_Level = proboLevel! as String?
         tableRow?.Class = classDescription as String?
